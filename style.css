@@ -88,7 +88,8 @@ body {
 
 @keyframes flicker {
   0%, 100% { opacity: 1; }
-  99% { opacity: 0.98; }
+  50% { opacity: 0.8; }
+  25%, 75% { opacity: 0.95; }
 }
 
 @keyframes scanlines { 
@@ -108,24 +109,16 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 1);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  backdrop-filter: blur(5px);
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  flex-direction: column;
+  opacity: 1;
+  color: var(--primary-color);
+  font-family: 'Space Mono', monospace;
   text-align: center;
-  padding: 20px;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -138,28 +131,35 @@ body {
 }
 
 .warning-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
   color: var(--primary-color);
-  text-shadow: 0 0 10px #34aadb, 0 0 20px rgba(52, 170, 219, .5);
-  animation: glow-pulse 2s ease-in-out infinite alternate;
+  text-shadow: 
+    0 0 1px #34aadb,
+    0 0 2px #34aadb,
+    0 0 3px #34aadb;
+  animation: glow-breathe 2s ease-in-out infinite alternate;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .warning-content p {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: var(--primary-color);
-  opacity: 0.8;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
-.key {
+.warning-screen .key {
   display: inline-block;
-  padding: 5px 15px;
-  border: 2px solid var(--primary-color);
+  background: rgba(52, 170, 219, 0.2);
+  border: 1px solid var(--primary-color);
   border-radius: 4px;
-  background: rgba(52, 170, 219, 0.1);
-  font-weight: bold;
-  animation: pulse 1s infinite;
+  padding: 0.2rem 0.5rem;
+  margin: 0 0.2rem;
+  font-family: monospace;
+  font-size: 1.1em;
+  box-shadow: 0 0 5px rgba(52, 170, 219, 0.5);
 }
 
 .hidden {
@@ -261,6 +261,12 @@ body {
   .separator {
     display: none;
   }
+  
+  /* Adjust warning screen for tablets */
+  .warning-content h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -341,12 +347,10 @@ body {
   font-weight: 700;
   margin-bottom: 1.5rem;
   letter-spacing: 2px;
-  text-shadow: 0 0 10px #34aadb, 0 0 20px rgba(52, 170, 219, .5), 0 0 30px rgba(52, 170, 219, .3);
   height: 50px;
   line-height: 50px;
   position: relative;
   text-align: center;
-  animation: glow-pulse 2s ease-in-out infinite alternate;
 }
 
 .terminal-title .underline-text::after {
@@ -370,14 +374,20 @@ body {
   text-align: center;
 }
 
-@keyframes glow-pulse {
+@keyframes glow-breathe {
   0% { 
-    text-shadow: 0 0 10px #34aadb, 0 0 20px rgba(52, 170, 219, .5), 0 0 30px rgba(52, 170, 219, .3);
-    transform: scale(1);
+    text-shadow: 
+      0 0 1px #34aadb,
+      0 0 2px #34aadb,
+      0 0 3px #34aadb;
+    opacity: 0.95;
   }
   100% { 
-    text-shadow: 0 0 15px #34aadb, 0 0 30px rgba(52, 170, 219, .7), 0 0 45px rgba(52, 170, 219, .5);
-    transform: scale(1.02);
+    text-shadow: 
+      0 0 2px #34aadb,
+      0 0 4px #34aadb,
+      0 0 6px #34aadb;
+    opacity: 1;
   }
 }
 
@@ -672,86 +682,7 @@ body {
   text-decoration: underline;
 }
 
-/* Warning Screen */
-.warning-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  backdrop-filter: blur(5px);
-  color: var(--primary-color);
-  font-family: 'Space Mono', monospace;
-  text-align: center;
-  padding: 2rem;
-  box-sizing: border-box;
-}
 
-.warning-screen h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px var(--primary-color);
-}
-
-.warning-screen p {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-.warning-screen .key {
-  display: inline-block;
-  background: rgba(52, 170, 219, 0.2);
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
-  padding: 0.2rem 0.5rem;
-  margin: 0 0.2rem;
-  font-family: monospace;
-  font-size: 1.1em;
-  box-shadow: 0 0 5px rgba(52, 170, 219, 0.5);
-}
-
-/* Developer Mode Counter */
-#dev-mode-counter {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--primary-color);
-  text-align: center;
-  padding: 0.5rem;
-  z-index: 9999;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: opacity 0.3s ease, height 0.3s ease;
-  backdrop-filter: blur(5px);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dev-mode-counter.visible {
-  opacity: 0.7;
-  height: auto;
-  min-height: 40px;
-}
-
-#counter-text {
-  margin: 0;
-  padding: 0.5rem 0;
-}
 
 /* Gamer Contact Message */
 .gamer-contact-message {
@@ -782,43 +713,6 @@ body {
   text-align: center;
 }
 
-/* Developer Mode Counter */
-#dev-mode-counter {
-  width: 100%;
-  padding: 0;
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  opacity: 0;
-  height: 0;
-  line-height: 1.5;
-}
-
-#dev-mode-counter p {
-  margin: 0;
-  padding: 10px 0;
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-#counter-text {
-  color: var(--primary-color);
-  opacity: 0.7;
-  font-size: 0.9rem;
-  text-align: center;
-  font-family: 'Space Mono', monospace;
-  margin: 0;
-}
 
 .open-source-note {
   color: var(--primary-color);
@@ -944,11 +838,6 @@ body {
   
   .footer-content {
     font-size: 0.85rem;
-  }
-  
-  /* Hide warning screen on mobile */
-  .warning-screen {
-    display: none !important;
   }
   
   /* Show content on mobile */
@@ -1152,5 +1041,16 @@ body {
   
   .gamer-quote {
     padding: 0.75rem;
+  }
+  
+  /* Hide warning screen on very small mobile screens */
+  .warning-screen {
+    display: none !important;
+  }
+  
+  /* Adjust warning screen for mobile */
+  .warning-content h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
   }
 }
