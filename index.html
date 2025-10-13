@@ -84,8 +84,8 @@
                         <i class="fas fa-envelope"></i> <span class="social-label">Email</span>
                     </a>
                     <span class="separator">|</span>
-                    <button id="resume-preview-btn" class="social-link" style="height: auto; min-height: 72px; display: flex; flex-direction: column; justify-content: center; align-items: center; grid-column: span 2; cursor: pointer;">
-                        <i class="fas fa-file-pdf"></i> <span class="social-label">Preview Resume.</span>
+                    <button id="resume-preview-btn" class="social-link">
+                        <i class="fas fa-file-pdf"></i> <span class="social-label">Download Resume</span>
                     </button>
                 </div>
                 
@@ -262,29 +262,7 @@
         </div>
 
         
-        <!-- Resume Preview Modal -->
-        <div id="resume-modal" class="resume-modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
-            <div class="resume-modal__backdrop"></div>
-            <div class="resume-modal__dialog" role="document">
-                <div class="resume-modal__header">
-                    <h2 class="resume-modal__title">Resume Preview</h2>
-                    <button class="resume-modal__close" id="resume-close-btn" aria-label="Close preview">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="resume-modal__body">
-                    <iframe id="resume-frame" title="Jay Varma Resume" src="" loading="lazy"></iframe>
-                </div>
-                <div class="resume-modal__footer">
-                    <a id="resume-download-link" href="assets/JayResume.pdf" download="JayVarma-Resume.pdf" class="project-link">
-                        <i class="fas fa-download"></i> Download PDF
-                    </a>
-                    <button class="project-link" id="resume-close-btn-bottom">
-                        <i class="fas fa-times"></i> Close
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
         <footer class="footer">
             <div class="footer-content">

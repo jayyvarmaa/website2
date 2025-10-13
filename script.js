@@ -1,90 +1,51 @@
 // Add warning screen functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Enhanced mobile device detection
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent) ||
-                     ('ontouchstart' in window) ||
-                     (navigator.maxTouchPoints > 0) ||
-                     window.innerWidth <= 768;
+    // Check if we're on mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    console.log('Mobile detected:', isMobile);
-    console.log('User Agent:', navigator.userAgent);
-    console.log('Screen width:', window.innerWidth);
-    console.log('Touch support:', 'ontouchstart' in window);
-    
-    // Get elements
+    // Get warning screen and content elements
     const warningScreen = document.getElementById('warning-screen');
-    const terminal = document.querySelector('.terminal-content');
+    const terminalContent = document.querySelector('.terminal-content');
     const topNav = document.querySelector('.top-nav');
-    
-    console.log('Warning screen element:', warningScreen);
-    console.log('Terminal element:', terminal);
-    console.log('Top nav element:', topNav);
+    const devModeCounter = document.getElementById('dev-mode-counter');
     
     // If on mobile, hide warning screen and show content
     if (isMobile) {
-        console.log('Mobile device detected - bypassing warning screen');
         if (warningScreen) warningScreen.style.display = 'none';
-        if (terminal) terminal.classList.remove('hidden');
+        if (terminalContent) terminalContent.classList.remove('hidden');
         if (topNav) topNav.classList.remove('hidden');
         return;
     }
     
     // On desktop, show warning screen and hide content initially
-    if (warningScreen) {
-        console.log('Showing warning screen on desktop');
-        warningScreen.style.display = 'flex';
-        warningScreen.style.opacity = '1';
-        console.log('Warning screen displayed immediately');
-    }
-    
-    // Hide terminal content and top nav initially
-    if (terminal) terminal.classList.add('hidden');
+    if (warningScreen) warningScreen.style.display = 'flex';
+    if (terminalContent) terminalContent.classList.add('hidden');
     if (topNav) topNav.classList.add('hidden');
+    // Hide developer mode counter on warning screen
+    if (devModeCounter) devModeCounter.style.display = 'none';
     
     // Listen for 'E' key press to hide warning screen
-    function handleKeyPress(e) {
-        if (e.key.toLowerCase() === 'e' && warningScreen && warningScreen.style.opacity === '1') {
-            // Remove the event listener to prevent multiple triggers
-            document.removeEventListener('keydown', handleKeyPress);
-            
-            // Hide warning screen immediately and show content
+    document.addEventListener('keydown', function(e) {
+        if (e.key.toLowerCase() === 'e' && warningScreen && warningScreen.style.display !== 'none') {
             warningScreen.style.display = 'none';
-            if (terminal) terminal.classList.remove('hidden');
+            if (terminalContent) terminalContent.classList.remove('hidden');
             if (topNav) topNav.classList.remove('hidden');
-        }
-    }
-    
-    // Add the event listener
-    document.addEventListener('keydown', handleKeyPress);
-    
-    // Handle window resize to ensure mobile detection works even after resize
-    window.addEventListener('resize', function() {
-        const isMobileAfterResize = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent) ||
-                                   ('ontouchstart' in window) ||
-                                   (navigator.maxTouchPoints > 0) ||
-                                   window.innerWidth <= 768;
-        
-        if (isMobileAfterResize && warningScreen && warningScreen.style.display !== 'none') {
-            console.log('Window resized to mobile - hiding warning screen');
-            warningScreen.style.display = 'none';
-            if (terminal) terminal.classList.remove('hidden');
-            if (topNav) topNav.classList.remove('hidden');
+            // Show developer mode counter when warning screen is hidden
+            if (devModeCounter) devModeCounter.style.display = 'block';
         }
     });
 });
 
-// Add 7-click developer mode feature (Android build number style)
+// Add 7-click developer mode feature
 document.addEventListener('DOMContentLoaded', function() {
     const nameElement = document.getElementById('name-clicker');
+    const counterElement = document.getElementById('dev-mode-counter');
+    const counterText = document.getElementById('counter-text');
     let clickCount = 0;
     let clickTimer = null;
-    let isDeveloperModeActive = false;
     
-    if (nameElement) {
+    if (nameElement && counterElement && counterText) {
         nameElement.addEventListener('click', function() {
-            // Don't proceed if developer mode is already active
-            if (isDeveloperModeActive) return;
-            
             clickCount++;
             
             // Reset the timer every time the user clicks
@@ -92,76 +53,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(clickTimer);
             }
             
-            // Show countdown only after first click
-            if (clickCount === 1) {
-                showCountdown();
+            // Show the counter when the user starts clicking
+            if (clickCount >= 1) {
+                counterElement.classList.add('visible');
             }
             
-            // Update the countdown text
-            if (clickCount < 7) {
-                updateCountdown(7 - clickCount);
+            // Update the counter text
+            const stepsLeft = 7 - clickCount;
+            if (stepsLeft > 0) {
+                counterText.textContent = `${stepsLeft} steps away from unlocking developer mode`;
             } else {
-                // 7th click - reload the page
-                updateCountdown(0);
-                isDeveloperModeActive = true;
-                setTimeout(() => {
-                    location.reload();
-                }, 500);
+                counterText.textContent = 'Developer mode unlocked! Reloading...';
             }
             
             // Set a timer to reset the counter after 2 seconds of inactivity
             clickTimer = setTimeout(() => {
-                hideCountdown();
                 clickCount = 0;
+                counterElement.classList.remove('visible');
             }, 2000);
-        });
-    }
-    
-    function showCountdown() {
-        // Create countdown element if it doesn't exist
-        let countdownElement = document.getElementById('dev-countdown');
-        if (!countdownElement) {
-            countdownElement = document.createElement('div');
-            countdownElement.id = 'dev-countdown';
-            countdownElement.style.cssText = `
-                position: fixed;
-                bottom: 56px;
-                left: 0;
-                width: 100%;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                color: var(--primary-color);
-                opacity: 0.7;
-                font-size: 0.9rem;
-                text-align: center;
-                font-family: 'Space Mono', monospace;
-                white-space: nowrap;
-                margin-bottom: 4px;
-            `;
-            document.body.appendChild(countdownElement);
-        }
-        countdownElement.style.display = 'flex';
-    }
-    
-    function updateCountdown(stepsLeft) {
-        const countdownElement = document.getElementById('dev-countdown');
-        if (countdownElement) {
-            if (stepsLeft > 0) {
-                countdownElement.textContent = `${stepsLeft} steps away from unlocking developer mode`;
-            } else {
-                countdownElement.textContent = 'Developer mode unlocked! Reloading...';
+            
+            // If the user clicked 7 times, reload the page
+            if (clickCount >= 7) {
+                location.reload();
             }
-        }
-    }
-    
-    function hideCountdown() {
-        const countdownElement = document.getElementById('dev-countdown');
-        if (countdownElement) {
-            countdownElement.style.display = 'none';
-        }
+        });
     }
 });
 
@@ -319,83 +234,421 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
         }
     }, 30000);
+    
+    // Add resume download functionality
+    const resumeButton = document.getElementById('resume-preview-btn');
+    if (resumeButton) {
+        resumeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const link = document.createElement('a');
+            link.href = 'assets/JayResume.pdf';
+            link.download = 'JayVarma-Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+});
 
-    // Resume preview modal logic
-    const previewBtn = document.getElementById('resume-preview-btn');
-    const modal = document.getElementById('resume-modal');
-    const frame = document.getElementById('resume-frame');
-    const closeTop = document.getElementById('resume-close-btn');
-    const closeBottom = document.getElementById('resume-close-btn-bottom');
-    const backdrop = modal ? modal.querySelector('.resume-modal__backdrop') : null;
-    const modalBody = modal ? modal.querySelector('.resume-modal__body') : null;
+let activitiesCache = [];
+let lastScheduledEnd = null;
+let ws = null;
+let heartbeatInterval = null;
+const USER_ID = '745203026335236178';
 
-    async function openModal() {
-        if (!modal || !modalBody) return;
+function connectToLanyard() {
+    showLoadingSpinner();
+    
+    try {
+        ws = new WebSocket('wss://api.lanyard.rest/socket');
+        
+        ws.onopen = function() {
+            console.log('Connected to Lanyard WebSocket');
+            updateLoadingText('retrieving activity data...');
+        };
+        
+        ws.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            handleWebSocketMessage(message);
+        };
+        
+        ws.onclose = function(event) {
+            console.log('Lanyard WebSocket connection closed:', event.code, event.reason);
+            showLoadingSpinner();
+            updateLoadingText('reconnecting...');
+            // Reconnect after 5 seconds
+            setTimeout(connectToLanyard, 5000);
+            if (heartbeatInterval) {
+                clearInterval(heartbeatInterval);
+                heartbeatInterval = null;
+            }
+        };
+        
+        ws.onerror = function(error) {
+            console.error('Lanyard WebSocket error:', error);
+            updateLoadingText('connection failed, retrying...');
+        };
+    } catch (error) {
+        console.error('Failed to connect to Lanyard WebSocket:', error);
+        // Fallback to REST API
+        setTimeout(fetchDiscordActivityREST, 1000);
+    }
+}
 
-        // Reset body with a fresh iframe first
-        modalBody.innerHTML = '';
-        const iframe = document.createElement('iframe');
-        iframe.id = 'resume-frame';
-        iframe.title = 'Jay Varma Resume';
-        iframe.loading = 'lazy';
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.border = '0';
-        modalBody.appendChild(iframe);
+function handleWebSocketMessage(message) {
+    console.log('Received WebSocket message:', message);
+    
+    switch (message.op) {
+        case 1: // Hello
+            const heartbeatIntervalMs = message.d.heartbeat_interval;
+            console.log('Starting heartbeat with interval:', heartbeatIntervalMs);
+            startHeartbeat(heartbeatIntervalMs);
+            sendInitialize();
+            break;
+            
+        case 0: // Event
+            if (message.t === 'INIT_STATE') {
+                console.log('Received INIT_STATE:', message.d);
+                // For single user subscription, the data is directly in message.d
+                updatePresence(message.d);
+            } else if (message.t === 'PRESENCE_UPDATE') {
+                console.log('Received PRESENCE_UPDATE:', message.d);
+                updatePresence(message.d);
+            }
+            break;
+    }
+}
 
-        try {
-            const response = await fetch('assets/JayResume.pdf', { cache: 'no-store' });
-            if (!response.ok) throw new Error('Failed to load PDF');
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            iframe.src = url + '#toolbar=0&navpanes=0&scrollbar=1';
-            // Revoke when closed in closeModal
-            iframe.dataset.blobUrl = url;
-        } catch (err) {
-            // Fallback: object embed for browsers that block iframe PDF rendering
-            modalBody.innerHTML = '';
-            const object = document.createElement('object');
-            object.type = 'application/pdf';
-            object.data = 'assets/JayResume.pdf#toolbar=0&navpanes=0&scrollbar=1';
-            object.style.width = '100%';
-            object.style.height = '100%';
-
-            const fallback = document.createElement('div');
-            fallback.style.cssText = 'display:flex;align-items:center;justify-content:center;height:100%;padding:1rem;text-align:center;';
-            fallback.innerHTML = '<p>Preview not supported here. <a href="assets/JayResume.pdf" download="JayVarma-Resume.pdf" class="project-link" style="margin-left:.5rem;">Download PDF</a></p>';
-
-            object.appendChild(fallback);
-            modalBody.appendChild(object);
+function startHeartbeat(intervalMs) {
+    if (heartbeatInterval) {
+        clearInterval(heartbeatInterval);
+    }
+    
+    heartbeatInterval = setInterval(() => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ op: 3 }));
         }
+    }, intervalMs);
+}
 
-        modal.classList.remove('hidden');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+function sendInitialize() {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        const initMessage = {
+            op: 2,
+            d: {
+                subscribe_to_id: USER_ID
+            }
+        };
+        console.log('Sending initialize message:', initMessage);
+        ws.send(JSON.stringify(initMessage));
+    }
+}
+
+function updatePresence(presenceData) {
+    console.log('Updating presence with data:', presenceData);
+    const activities = presenceData.activities || [];
+    console.log('Extracted activities:', activities);
+    activitiesCache = activities;
+    lastScheduledEnd = null;
+    hideLoadingSpinner();
+    renderActivities(activities);
+}
+
+function showLoadingSpinner() {
+    const loadingElement = document.getElementById('activity-loading');
+    const activityDetails = document.getElementById('activity-details');
+    const activityExtras = document.getElementById('activity-extras');
+    
+    if (loadingElement) loadingElement.style.display = 'flex';
+    if (activityDetails) activityDetails.style.display = 'none';
+    if (activityExtras) activityExtras.style.display = 'none';
+}
+
+function hideLoadingSpinner() {
+    const loadingElement = document.getElementById('activity-loading');
+    if (loadingElement) loadingElement.style.display = 'none';
+}
+
+function updateLoadingText(text) {
+    const loadingText = document.querySelector('.loading-text');
+    if (loadingText) loadingText.textContent = text;
+}
+
+// Fallback REST API function
+async function fetchDiscordActivityREST() {
+    showLoadingSpinner();
+    updateLoadingText('loading activity data...');
+    
+    try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
+        const data = await response.json();
+
+        if (data.success) {
+            const activities = data.data.activities || [];
+            activitiesCache = activities;
+            lastScheduledEnd = null;
+            hideLoadingSpinner();
+            renderActivities(activities);
+        }
+    } catch (error) {
+        console.error('Failed to fetch Discord activity:', error);
+        updateLoadingText('failed to load activity data');
+        setTimeout(() => {
+            const activityDetails = document.getElementById('activity-details');
+            if (activityDetails) activityDetails.style.display = 'none';
+            hideLoadingSpinner();
+        }, 2000);
+    }
+}
+
+function renderActivities(activities) {
+    const activityDetails = document.getElementById('activity-details');
+    const activityName = document.getElementById('activity-name');
+    const activityDescription = document.getElementById('activity-description');
+    const activityTime = document.getElementById('activity-time');
+    const activityExtras = document.getElementById('activity-extras');
+    const extrasToggle = document.getElementById('extras-toggle');
+    const extrasList = document.getElementById('extras-list');
+    const discordActivity = document.querySelector('.discord-activity');
+
+    if (!activityDetails || !activityName || !activityDescription || !activityTime) return;
+
+    if (!activities || activities.length === 0) {
+        activityDetails.style.display = 'none';
+        if (activityExtras) activityExtras.style.display = 'none';
+        if (discordActivity) discordActivity.style.display = 'none';
+        return;
     }
 
-    function closeModal() {
-        if (!modal || !modalBody) return;
-        modal.classList.add('hidden');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        // Unload content to free resources on close
-        const existingIframe = modalBody.querySelector('iframe#resume-frame');
-        if (existingIframe) {
-            const blobUrl = existingIframe.dataset.blobUrl;
-            if (blobUrl) {
-                try { URL.revokeObjectURL(blobUrl); } catch (e) {}
+    const primary = activities[0];
+    activityName.textContent = primary.name || '';
+    let details = [];
+    if (primary.details) details.push(primary.details);
+    if (primary.state) details.push(primary.state);
+    activityDescription.textContent = details.join(' • ');
+
+    const isPrimarySpotify = primary.name && primary.name.toLowerCase().includes('spotify') && primary.timestamps && primary.timestamps.start && primary.timestamps.end;
+    if (!isPrimarySpotify) {
+        if (primary.timestamps && primary.timestamps.start) {
+            const elapsed = Date.now() - primary.timestamps.start;
+            activityTime.textContent = `for ${formatElapsedTime(elapsed)}`;
+        } else {
+            activityTime.textContent = '';
+        }
+    } else {
+        activityTime.textContent = '';
+    }
+
+    const activityProgress = document.getElementById('activity-progress');
+    const activityProgressFill = document.getElementById('activity-progress-fill');
+    if (primary.name && primary.name.toLowerCase().includes('spotify') && primary.timestamps && primary.timestamps.start && primary.timestamps.end) {
+        const start = primary.timestamps.start;
+        const end = primary.timestamps.end;
+        const pct = Math.max(0, Math.min(100, Math.round(((Date.now() - start) / (end - start)) * 100)));
+        if (activityProgress && activityProgressFill) {
+            activityProgress.style.display = 'block';
+            activityProgressFill.style.width = `${pct}%`;
+            const curEl = document.getElementById('activity-progress-current');
+            const totEl = document.getElementById('activity-progress-total');
+            if (curEl) curEl.textContent = formatTimeMMSS(Date.now() - start);
+            if (totEl) totEl.textContent = formatTimeMMSS(end - start);
+        }
+    } else {
+        if (activityProgress) activityProgress.style.display = 'none';
+    }
+
+    activityDetails.style.display = 'block';
+    if (discordActivity) discordActivity.style.display = 'block';
+
+    if (activityExtras && extrasList && extrasToggle) {
+        if (activities.length > 1) {
+            // Preserve the current expansion state
+            const wasOpen = activityExtras.classList.contains('open');
+            
+            // Clear and rebuild the extras list
+            extrasList.innerHTML = '';
+            
+            for (let i = 1; i < activities.length; i++) {
+                const act = activities[i];
+                const div = document.createElement('div');
+                div.className = 'extras-item';
+
+                const nameEl = document.createElement('div');
+                nameEl.className = 'extras-item-name';
+                nameEl.textContent = act.name || 'Unknown';
+
+                const descEl = document.createElement('div');
+                descEl.className = 'extras-item-desc';
+                let sub = [];
+                if (act.details) sub.push(act.details);
+                if (act.state) sub.push(act.state);
+                descEl.textContent = sub.join(' • ');
+
+                const timeEl = document.createElement('div');
+                timeEl.className = 'extras-item-time';
+                const isExtraSpotify = act.name && act.name.toLowerCase().includes('spotify') && act.timestamps && act.timestamps.start && act.timestamps.end;
+                if (!isExtraSpotify && act.timestamps && act.timestamps.start) {
+                    timeEl.dataset.start = act.timestamps.start;
+                    timeEl.textContent = `for ${formatElapsedTime(Date.now() - act.timestamps.start)}`;
+                } else {
+                    timeEl.textContent = '';
+                }
+
+                div.appendChild(nameEl);
+                if (descEl.textContent) div.appendChild(descEl);
+                if (timeEl.textContent) div.appendChild(timeEl);
+
+                if (act.name && act.name.toLowerCase().includes('spotify') && act.timestamps && act.timestamps.start && act.timestamps.end) {
+                    const extraProgress = document.createElement('div');
+                    extraProgress.className = 'progress-bar';
+                    extraProgress.style.marginTop = '6px';
+                    const extraFill = document.createElement('div');
+                    extraFill.className = 'progress-fill';
+                    const pct = Math.max(0, Math.min(100, Math.round(((Date.now() - act.timestamps.start) / (act.timestamps.end - act.timestamps.start)) * 100)));
+                    extraFill.style.width = `${pct}%`;
+                    extraFill.dataset.start = String(act.timestamps.start);
+                    extraFill.dataset.end = String(act.timestamps.end);
+                    const extraTimes = document.createElement('div');
+                    extraTimes.className = 'progress-times extras-progress-times';
+                    const extraCur = document.createElement('span');
+                    extraCur.className = 'progress-current';
+                    extraCur.textContent = formatTimeMMSS(Date.now() - act.timestamps.start);
+                    const extraTot = document.createElement('span');
+                    extraTot.className = 'progress-total';
+                    extraTot.textContent = formatTimeMMSS(act.timestamps.end - act.timestamps.start);
+                    extraTimes.appendChild(extraCur);
+                    extraTimes.appendChild(extraTot);
+                    extraProgress.appendChild(extraFill);
+                    div.appendChild(extraTimes);
+                    div.appendChild(extraProgress);
+                }
+
+                extrasList.appendChild(div);
+            }
+            
+            // Show the extras section
+            activityExtras.style.display = 'block';
+            
+            // Update button text based on current state
+            extrasToggle.textContent = wasOpen ? `- hide activities` : `+ more activities (${activities.length - 1})`;
+            
+            // Set up the toggle functionality
+            extrasToggle.onclick = () => {
+                const nowOpen = activityExtras.classList.toggle('open');
+                extrasToggle.textContent = nowOpen ? `- hide activities` : `+ more activities (${activities.length - 1})`;
+            };
+            
+            // Restore the previous expansion state
+            if (wasOpen) {
+                activityExtras.classList.add('open');
+            } else {
+                activityExtras.classList.remove('open');
+            }
+        } else {
+            activityExtras.style.display = 'none';
+        }
+    }
+}
+
+function formatElapsedTime(milliseconds) {
+    const seconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    
+    if (days > 0) {
+        return `${days}d ${hours % 24}h`;
+    } else if (hours > 0) {
+        return `${hours}h ${minutes % 60}m`;
+    } else if (minutes > 0) {
+        return `${minutes}m ${seconds % 60}s`;
+    } else {
+        return `${seconds}s`;
+    }
+}
+
+function formatTimeMMSS(milliseconds) {
+    if (isNaN(milliseconds) || milliseconds < 0) return '0:00';
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const seconds = totalSeconds % 60;
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+
+    const pad = (v) => (v < 10 ? '0' + v : String(v));
+    if (hours > 0) {
+        return `${hours}:${pad(minutes)}:${pad(seconds)}`;
+    }
+    return `${minutes}:${pad(seconds)}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    connectToLanyard();
+    setInterval(() => {
+        if (!activitiesCache || activitiesCache.length === 0) return;
+        const primary = activitiesCache[0];
+        const activityTime = document.getElementById('activity-time');
+        const activityName = document.getElementById('activity-name');
+        if (primary && activityTime && activityName) {
+            const isPrimarySpotify = primary.name && primary.name.toLowerCase().includes('spotify') && primary.timestamps && primary.timestamps.start && primary.timestamps.end;
+            if (!isPrimarySpotify) {
+                if (primary.timestamps && primary.timestamps.start) {
+                    const elapsed = Date.now() - primary.timestamps.start;
+                    activityTime.textContent = `for ${formatElapsedTime(elapsed)}`;
+                } else {
+                    activityTime.textContent = '';
+                }
+            } else {
+                activityTime.textContent = '';
             }
         }
-        modalBody.innerHTML = '';
-    }
-
-    if (previewBtn) previewBtn.addEventListener('click', openModal);
-    if (closeTop) closeTop.addEventListener('click', closeModal);
-    if (closeBottom) closeBottom.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', closeModal);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
+            const activityProgressFill = document.getElementById('activity-progress-fill');
+            if (activityProgressFill && activitiesCache[0] && activitiesCache[0].timestamps && activitiesCache[0].timestamps.start && activitiesCache[0].timestamps.end) {
+                const s = activitiesCache[0].timestamps.start;
+                const e = activitiesCache[0].timestamps.end;
+                const pct = Math.max(0, Math.min(100, Math.round(((Date.now() - s) / (e - s)) * 100)));
+                activityProgressFill.style.width = `${pct}%`;
+                document.getElementById('activity-progress').style.display = 'block';
+                const curEl = document.getElementById('activity-progress-current');
+                const totEl = document.getElementById('activity-progress-total');
+                if (curEl) curEl.textContent = formatTimeMMSS(Date.now() - s);
+                if (totEl) totEl.textContent = formatTimeMMSS(e - s);
+                if (Date.now() >= e && lastScheduledEnd !== e) {
+                    lastScheduledEnd = e;
+                    setTimeout(() => {
+                        fetchDiscordActivity();
+                        lastScheduledEnd = null;
+                    }, 2000);
+                }
+            }
+        const activityExtras = document.getElementById('activity-extras');
+        if (activityExtras && activityExtras.classList.contains('open')) {
+            const timeEls = document.querySelectorAll('.extras-item-time');
+            timeEls.forEach(el => {
+                const start = parseInt(el.dataset.start, 10);
+                if (!isNaN(start)) {
+                    el.textContent = `for ${formatElapsedTime(Date.now() - start)}`;
+                }
+            });
+                const extraFills = document.querySelectorAll('.extras-item .progress-fill');
+                extraFills.forEach(fill => {
+                    const s = parseInt(fill.dataset.start, 10);
+                    const e = parseInt(fill.dataset.end, 10);
+                    if (!isNaN(s) && !isNaN(e) && e > s) {
+                        const pct = Math.max(0, Math.min(100, Math.round(((Date.now() - s) / (e - s)) * 100)));
+                        fill.style.width = `${pct}%`;
+                        const parent = fill.closest('.extras-item');
+                        if (parent) {
+                            const times = parent.querySelector('.extras-progress-times');
+                            if (times) {
+                                const cur = times.querySelector('.progress-current');
+                                const tot = times.querySelector('.progress-total');
+                                if (cur) cur.textContent = formatTimeMMSS(Date.now() - s);
+                                if (tot) tot.textContent = formatTimeMMSS(e - s);
+                            }
+                        }
+                    }
+                });
         }
-    });
+    }, 1000);
 });

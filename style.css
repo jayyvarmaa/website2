@@ -495,6 +495,21 @@ body {
   text-overflow: ellipsis;
 }
 
+#resume-preview-btn {
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 2;
+  cursor: pointer;
+}
+
+#resume-preview-btn .social-label {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
 /* Gamer Quote Section */
 .gamer-quote {
   margin-top: 2rem;
@@ -1004,84 +1019,6 @@ body {
     text-align: center;
   }
   
-/* Resume Modal */
-.resume-modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10001;
-}
-
-.resume-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(2px);
-}
-
-.resume-modal__dialog {
-  position: relative;
-  width: min(1000px, calc(100vw - 2rem));
-  height: min(80vh, 800px);
-  background: #000;
-  border: 1px solid var(--primary-color);
-  border-radius: 6px;
-  box-shadow: var(--primary-glow);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.resume-modal__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: .75rem 1rem;
-  border-bottom: 1px solid rgba(52, 170, 219, .2);
-}
-
-.resume-modal__title {
-  font-size: 1rem;
-}
-
-.resume-modal__close {
-  background: transparent;
-  color: var(--primary-color);
-  border: 1px solid rgba(52, 170, 219, 0.3);
-  border-radius: 4px;
-  padding: .35rem .5rem;
-  cursor: pointer;
-}
-
-.resume-modal__body {
-  flex: 1;
-  background: #000;
-}
-
-#resume-frame {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.resume-modal__footer {
-  display: flex;
-  gap: .5rem;
-  justify-content: flex-end;
-  padding: .5rem 1rem;
-  border-top: 1px solid rgba(52, 170, 219, .2);
-}
-
-@media (max-width: 480px) {
-  .resume-modal__dialog {
-    width: calc(100vw - 1rem);
-    height: 80vh;
-  }
-}
-
   .page-description {
     font-size: .9rem;
     text-align: center;
