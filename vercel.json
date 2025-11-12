@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/noan", "destination": "https://noan.jayvarma.site" },
+    { "source": "/ransomtype", "destination": "https://ransomtype.jayvarma.site" }
+  ]
+}
