@@ -11,7 +11,7 @@ const projects = [
         image: 'assets/thumbnails/Asterioid Thumbnail.jpg',
         tech: ['Unity', 'C#'],
         links: {
-            download: 'assets/Asteroids.rar'
+            view: 'https://jayyvarmaa.itch.io/asteroids'
         },
         badge: null,
         featured: false
@@ -24,7 +24,7 @@ const projects = [
         image: 'assets/thumbnails/cube Thumbnail.jpg',
         tech: ['Unity', 'C#', '3D'],
         links: {
-            download: 'assets/Cube!.rar'
+            view: 'https://jayyvarmaa.itch.io/cube'
         },
         badge: null,
         featured: false
@@ -403,13 +403,28 @@ function renderProjects(projectsToRender) {
 }
 
 function createProjectCard(project, index) {
-    const card = document.createElement('div');
+    const isClickable = !!project.links.view;
+    const card = document.createElement(isClickable ? 'a' : 'div');
     card.className = 'project-card';
     card.dataset.category = project.category;
     card.style.animationDelay = `${index * 0.05}s`;
 
+    if (isClickable) {
+        card.href = project.links.view;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+    }
+
     const imageSection = document.createElement('div');
     imageSection.className = 'project-image';
+
+    // Add Overlay for clickable cards
+    if (isClickable) {
+        const overlay = document.createElement('div');
+        overlay.className = 'model-card-overlay'; // Reusing the 3D model overlay style
+        overlay.innerHTML = '<i class="fas fa-external-link-alt"></i>';
+        imageSection.appendChild(overlay);
+    }
 
     if (project.image) {
         const img = document.createElement('img');
@@ -432,6 +447,9 @@ function createProjectCard(project, index) {
     const content = document.createElement('div');
     content.className = 'project-content';
 
+    // Filter out 'view' link for buttons if card is clickable
+    const linksToRender = Object.entries(project.links).filter(([type]) => !isClickable || type !== 'view');
+
     content.innerHTML = `
         <div class="project-tags">
             <span class="project-category-tag">${getCategoryLabel(project.category)}</span>
@@ -444,13 +462,25 @@ function createProjectCard(project, index) {
                 ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
             </div>
             <div class="project-links">
-                ${Object.entries(project.links).map(([type, url]) => createLinkButton(type, url, project.name)).join('')}
-                ${project.demo ? `<button class="project-link demo-btn" onclick="openAIDemo()"><i class="fas fa-play"></i> Live Demo</button>` : ''}
+                ${linksToRender.map(([type, url]) => createLinkButton(type, url, project.name)).join('')}
+                ${project.demo ? `<button class="project-link demo-btn" onclick="openAIDemo(event)"><i class="fas fa-play"></i> Live Demo</button>` : ''}
             </div>
         </div>
     `;
 
     card.appendChild(content);
+
+    // Prevent default on button clicks inside anchor
+    if (isClickable) {
+        const buttons = content.querySelectorAll('button, a');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // If it's an anchor inside an anchor, browser handles it, but we stop propagation to outer card
+            });
+        });
+    }
+
     return card;
 }
 
@@ -509,11 +539,16 @@ function createLinkButton(type, url, projectName = '') {
 
     const isDownload = type === 'download';
 
+    // Determine icon set (Brands vs Solid)
+    const isBrand = ['github', 'linkedin', 'instagram', 'twitter', 'discord'].includes(type);
+    const iconClass = isBrand ? 'fab' : 'fas';
+
     return `
         <a href="${url}" 
            class="project-link" 
-           ${isDownload ? 'download' : 'target="_blank"'}>
-            <i class="fas ${icons[type] || 'fa-link'}"></i>
+           ${isDownload ? 'download' : 'target="_blank"'}
+           ${isBrand ? 'rel="noopener noreferrer"' : ''}>
+            <i class="${iconClass} ${icons[type] || 'fa-link'}"></i>
             ${labels[type] || type}
         </a>
     `;

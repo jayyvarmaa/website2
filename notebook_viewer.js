@@ -14,7 +14,7 @@ async function loadPyodideRuntime() {
 
     pyodideReadyPromise = (async () => {
         try {
-            updateNotebookStatus('Initializing Python Runtime...', 'warning');
+            updateNotebookStatus('Initializing Python Runtime...', 'busy');
             // Load Pyodide script dynamically if not present
             if (!window.loadPyodide) {
                 await loadScript('https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js');
@@ -38,7 +38,7 @@ async function loadPyodideRuntime() {
                 sys.modules['microsite'] = MicrositeMock()
             `);
 
-            updateNotebookStatus('Python Ready', 'success');
+            updateNotebookStatus('Python Ready', 'active');
             return pyodide;
         } catch (err) {
             console.error("Pyodide failed to load:", err);
@@ -80,7 +80,7 @@ async function openNotebook(source, title) {
     titleText.textContent = title || 'Notebook';
     contentArea.innerHTML = '<div class="notebook-loading"><i class="fas fa-spinner fa-spin"></i> Loading Notebook...</div>';
 
-    updateNotebookStatus('Loading...', 'warning');
+    updateNotebookStatus('Loading...', 'not-ready');
 
     try {
         let notebookJson;
@@ -104,7 +104,7 @@ async function openNotebook(source, title) {
         }
 
         renderNotebook(notebookJson, contentArea);
-        updateNotebookStatus('Ready', 'success');
+        updateNotebookStatus('Ready', 'not-ready');
 
         // Ensure Python is loading in background
         loadPyodideRuntime();
