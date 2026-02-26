@@ -62,10 +62,11 @@ const projects = [
         name: 'Portfolio Website',
         category: 'web',
         description: 'This very website! A terminal-themed portfolio with interactive elements, Discord activity integration, and responsive design.',
-        image: 'assets/thumbnails/Portfolio Thumbnail Blue.jpg',
+        image: null,
+        livePreview: true,
         tech: ['HTML', 'CSS', 'JavaScript'],
         links: {
-            github: 'https://github.com/jayyvarmaa/website'
+            view: 'https://github.com/jayyvarmaa/website'
         },
         badge: null,
         featured: false
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initCategoryFilters();
     init3DGallery();
     initResumeButton();
+    initCinematicPage();
     connectToLanyard();
 });
 
@@ -298,21 +300,6 @@ function activateDeveloperMode() {
 
     const isActive = document.body.classList.contains('developer-mode');
 
-    // Update dynamic content for developer mode
-    const portfolioProject = projects.find(p => p.id === 'portfolio');
-    if (portfolioProject) {
-        portfolioProject.image = isActive
-            ? 'assets/thumbnails/Portfolio Thumbnail White.jpg'
-            : 'assets/thumbnails/Portfolio Thumbnail Blue.jpg';
-
-        // Fully re-render to update the image source
-        renderProjects(projects);
-
-        // Re-apply current filter
-        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.category || 'all';
-        filterProjects(activeFilter);
-    }
-
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -426,7 +413,40 @@ function createProjectCard(project, index) {
         imageSection.appendChild(overlay);
     }
 
-    if (project.image) {
+    if (project.livePreview) {
+        // Read stats from home page DOM to stay in sync
+        const statEls = document.querySelectorAll('.stat-item');
+        const stats = [];
+        statEls.forEach(el => {
+            const num = el.querySelector('.stat-number')?.getAttribute('data-count') || '0';
+            const label = el.querySelector('.stat-label')?.textContent || '';
+            stats.push({ num: num + '+', label });
+        });
+
+        const preview = document.createElement('div');
+        preview.className = 'portfolio-live-preview';
+        preview.innerHTML = `
+            <div class="plp-scanline"></div>
+            <div class="plp-title">Jay Varma</div>
+            <div class="plp-subtitle">Game Developer | 3D Artist | Data Scientist</div>
+            <div class="plp-stats">
+                ${stats.map(s => `<div class="plp-stat"><span class="plp-stat-num">${s.num}</span><span class="plp-stat-label">${s.label}</span></div>`).join('')}
+            </div>
+            <div class="plp-links">
+                <span class="plp-link"><i class="fab fa-linkedin"></i></span>
+                <span class="plp-link"><i class="fab fa-github"></i></span>
+                <span class="plp-link"><i class="fab fa-instagram"></i></span>
+                <span class="plp-link"><i class="fas fa-envelope"></i></span>
+            </div>
+        `;
+        imageSection.appendChild(preview);
+
+        // Add overlay for hover
+        const overlay = document.createElement('div');
+        overlay.className = 'model-card-overlay';
+        overlay.innerHTML = '<i class="fas fa-external-link-alt"></i>';
+        imageSection.appendChild(overlay);
+    } else if (project.image) {
         const img = document.createElement('img');
         img.src = project.image;
         img.alt = project.name;
@@ -489,6 +509,7 @@ function getCategoryIcon(category) {
         games: 'fa-gamepad',
         web: 'fa-globe',
         '3d': 'fa-cube',
+        cinematic: 'fa-film',
         datascience: 'fa-brain'
     };
     return icons[category] || 'fa-folder';
@@ -499,6 +520,7 @@ function getCategoryLabel(category) {
         games: 'Game',
         web: 'Web',
         '3d': '3D',
+        cinematic: 'Cinematic',
         datascience: 'Data Science'
     };
     return labels[category] || category;
@@ -512,7 +534,8 @@ function createLinkButton(type, url, projectName = '') {
         demo: 'fa-play',
         notebook: 'fa-book',
         report: 'fa-file-pdf',
-        slides: 'fa-file-powerpoint'
+        slides: 'fa-file-powerpoint',
+        watch: 'fa-film'
     };
 
     const labels = {
@@ -523,8 +546,18 @@ function createLinkButton(type, url, projectName = '') {
         notebook: 'Notebook',
         explore: 'Explore',
         report: 'Report',
-        slides: 'Slides'
+        slides: 'Slides',
+        watch: 'Watch'
     };
+
+    if (type === 'watch') {
+        return `
+            <button class="project-link cinema-watch-btn" onclick="navigateToPage('${url}')">
+                <i class="fas ${icons[type]}"></i>
+                ${labels[type]}
+            </button>
+        `;
+    }
 
     if (type === 'notebook' || type === 'explore') {
         const safeTitle = projectName.replace(/'/g, "\\'"); // simple escape
@@ -759,4 +792,66 @@ function create3DModelCard(model, index) {
     return card;
 }
 
+// ============================================
+// PAGE NAVIGATION HELPER
+// ============================================
+function navigateToPage(pageName) {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
 
+    navLinks.forEach(nav => nav.classList.remove('active'));
+    pages.forEach(page => page.classList.remove('active'));
+
+    const targetNav = document.querySelector(`.nav-link[data-page="${pageName}"]`);
+    const targetPage = document.getElementById(pageName + '-page');
+
+    if (targetNav) targetNav.classList.add('active');
+    if (targetPage) targetPage.classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// ============================================
+// CINEMATIC PAGE (Simple YouTube Embeds)
+// ============================================
+
+function initCinematicPage() {
+    // Inline link navigation (home page bio links)
+    document.querySelectorAll('.cinematic-inline-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            navigateToPage(this.dataset.page);
+        });
+    });
+}
+
+
+// ============================================
+// DICTIONARY SPEAKER BUTTON
+// ============================================
+(function () {
+    const btn = document.getElementById('dict-audio-btn');
+    if (!btn) return;
+
+    // Audio source pointed to the provided file
+    let audio = null;
+    const audioSrc = 'assets/polymath.mp3';
+
+    btn.addEventListener('click', () => {
+        if (!audio) {
+            audio = new Audio(audioSrc);
+            audio.volume = 0.8;
+        }
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+            // Audio file not found â€” visual feedback only
+        });
+
+        // Visual pulse feedback
+        btn.style.transform = 'scale(1.15)';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            btn.style.transform = '';
+            btn.style.color = '';
+        }, 200);
+    });
+})();

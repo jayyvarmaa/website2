@@ -110,7 +110,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     transition: background 0.2s;
     flex-shrink: 0;
 }
@@ -189,7 +189,7 @@
 #notebook-status {
     font-size: 0.75rem;
     color: #ccc;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* Toolbar Label */
@@ -198,7 +198,7 @@
     color: #e8eaed;
     margin-left: 10px;
     opacity: 0.8;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .notebook-body {
@@ -278,7 +278,7 @@
 .cell-output-container {
     margin-left: 36px;
     padding-top: 10px;
-    font-family: monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;

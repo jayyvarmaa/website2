@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jay Varma | Game Developer & Creative Technologist</title>
+    <title>@jayyvarmaa</title>
 
     <meta property="og:title" content="Jay Varma">
     <meta property="og:url" content="https://jayvarma.site">
@@ -41,7 +41,7 @@
                 <h1>WARNING</h1>
                 <p>This site may contain traces of game development obsession</p>
                 <p>To continue, please press <span class="key">E</span> on your keyboard</p>
-                <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">© 2026 Jay Varma</p>
+                <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">&copy; 2026 Jay Varma</p>
             </div>
         </div>
 
@@ -57,6 +57,10 @@
             <button class="nav-link" data-page="gallery">
                 <i class="fas fa-cube"></i>
                 <span class="nav-text">3D gallery</span>
+            </button>
+            <button class="nav-link" data-page="cinematic">
+                <i class="fas fa-film"></i>
+                <span class="nav-text">cinematic</span>
             </button>
             <button class="nav-link" data-page="experience">
                 <i class="fas fa-briefcase"></i>
@@ -77,19 +81,30 @@
             <div id="home-page" class="page active">
                 <div class="profile-section">
                     <h1 class="terminal-title" id="name-clicker"><span class="underline-text">Jay Varma</span></h1>
-                    <p class="terminal-description">Game Developer | 3D Artist | Data Scientist</p>
                 </div>
-
-                <div class="bio-section">
-                    <p>As a dedicated game developer, I specialize in creating immersive 3D environments and dynamic
-                        gameplay experiences.</p>
-                    <p>Currently, I'm working on an exciting new cinematic project.</p>
+                <!-- Dictionary Definition Card -->
+                <div class="dict-card">
+                    <div class="dict-header">
+                        <button class="dict-speaker" id="dict-audio-btn" title="Listen to pronunciation">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <div class="dict-word-group">
+                            <span class="dict-word">poly&middot;math</span>
+                            <span class="dict-phonetic">[&#x2C8;p&#x252;l&#x26A;ma&#x3B8;]</span>
+                        </div>
+                    </div>
+                    <span class="dict-pos-badge">Noun</span>
+                    <div class="dict-forms">polymath (noun) &middot; polymaths (plural noun)</div>
+                    <div class="dict-definition">
+                        <span class="dict-def-num">1.</span> a person of wide knowledge or learning:
+                        <span class="dict-example">&quot;a Renaissance polymath&quot;</span>
+                    </div>
                 </div>
 
                 <!-- Stats Section -->
                 <div class="stats-section">
                     <div class="stat-item">
-                        <span class="stat-number" data-count="6">0</span>
+                        <span class="stat-number" data-count="7">0</span>
                         <span class="stat-label">Projects</span>
                     </div>
                     <div class="stat-item">
@@ -111,14 +126,6 @@
                         <i class="fab fa-github"></i> <span class="social-label">GitHub</span>
                     </a>
                     <span class="separator">|</span>
-                    <a href="https://instagram.com/jayyvarmaa" target="_blank" class="social-link">
-                        <i class="fab fa-instagram"></i> <span class="social-label">Instagram</span>
-                    </a>
-                    <span class="separator">|</span>
-                    <a href="mailto:jaymayurvarma@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i> <span class="social-label">Email</span>
-                    </a>
-                    <span class="separator">|</span>
                     <button id="resume-preview-btn" class="social-link">
                         <i class="fas fa-file-pdf"></i> <span class="social-label">Resume</span>
                     </button>
@@ -126,7 +133,7 @@
 
                 <!-- Gamer Quote -->
                 <div class="gamer-quote">
-                    <p><i class="fas fa-quote-left"></i> "It's not a bug, it's a feature!" <i
+                    <p><i class="fas fa-quote-left"></i> &quot;It's not a bug, it's a feature!&quot; <i
                             class="fas fa-quote-right"></i></p>
                     <p class="quote-author">- Every Developer Ever</p>
                 </div>
@@ -150,7 +157,6 @@
                     <button class="filter-btn" data-category="web">
                         <i class="fas fa-globe"></i> Web
                     </button>
-
                     <button class="filter-btn" data-category="datascience">
                         <i class="fas fa-brain"></i> Data Science
                     </button>
@@ -179,6 +185,58 @@
             </div>
 
 
+
+            <!-- Cinematic Page -->
+            <div id="cinematic-page" class="page">
+                <div class="premiere-container">
+                    <!-- Film Presentation -->
+                    <div class="premiere-theater">
+                        <div class="premiere-badge">FEATURED SHORT <span class="premiere-year">2023</span></div>
+                        <h2 class="premiere-title">Osaka no Urami</h2>
+                        <h3 class="premiere-japanese">&#x5927;&#x962A;&#x306E;&#x6068;&#x307F;</h3>
+
+                        <div class="premiere-screen-wrapper">
+                            <iframe id="main-yt-iframe"
+                                src="https://www.youtube-nocookie.com/embed/o_DbgIUeTB4?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
+                                title="Osaka no Urami - Short Film" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Film Synopsis & Credits -->
+                    <div class="premiere-metadata">
+                        <div class="premiere-synopsis">
+                            <p class="premiere-tagline">&quot;A journey from concept to final cut.&quot;</p>
+                            <p class="premiere-description">A cinematic short film blending dramatic storytelling with
+                                immersive visuals. This project showcases direction, cinematography, and post-production
+                                execution, capturing the essence of the narrative.</p>
+                        </div>
+
+                        <div class="premiere-crew">
+                            <div class="crew-role">
+                                <span>Directed &amp; Produced by</span>
+                                <strong>Jay Varma</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behind The Scenes Featurette -->
+                    <div class="premiere-bts-section">
+                        <div class="bts-header">
+                            <h4>Behind The Scenes</h4>
+                            <p>The Making of Osaka no Urami</p>
+                        </div>
+                        <div class="premiere-screen-wrapper bts-screen">
+                            <iframe id="bts-yt-iframe"
+                                src="https://www.youtube-nocookie.com/embed/Gy5I_NR_x8I?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
+                                title="Osaka no Urami - Behind The Scenes" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Experience Page -->
             <div id="experience-page" class="page">
@@ -264,7 +322,7 @@
                         <div class="skill-icon">
                             <i class="fas fa-paint-brush"></i>
                         </div>
-                        <h3>3D Art & Design</h3>
+                        <h3>3D Art &amp; Design</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Blender</span>
                             <span class="skill-tag">Maya</span>
@@ -281,7 +339,7 @@
                         <div class="skill-icon">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <h3>Data Science & AI</h3>
+                        <h3>Data Science &amp; AI</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">TensorFlow</span>
@@ -314,7 +372,7 @@
                         <div class="skill-icon">
                             <i class="fas fa-tools"></i>
                         </div>
-                        <h3>Tools & Software</h3>
+                        <h3>Tools &amp; Software</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">Visual Studio</span>
@@ -371,8 +429,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>© 2026 Jay Varma | Built with <i class="fas fa-heart"></i> and lots of <i class="fas fa-coffee"></i>
-            </p>
+            <p>&copy; 2026 Jay Varma</p>
         </div>
     </footer>
     </div>
