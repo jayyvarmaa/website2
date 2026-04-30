@@ -7,6 +7,14 @@ const NOTEBOOK_MODAL_ID = 'notebook-modal';
 const NOTEBOOK_CONTENT_ID = 'notebook-render-area';
 let pyodide = null;
 let pyodideReadyPromise = null;
+let tfjsLoaded = false;
+
+// Lazy-load TensorFlow.js only when needed
+async function loadTensorFlow() {
+    if (tfjsLoaded) return;
+    await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js');
+    tfjsLoaded = true;
+}
 
 // Initialize Pyodide
 async function loadPyodideRuntime() {

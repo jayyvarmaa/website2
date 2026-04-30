@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initProjectsGrid();
     initCategoryFilters();
     init3DGallery();
-    initResumeButton();
     initCinematicPage();
     connectToLanyard();
 });
@@ -177,25 +176,66 @@ function initWarningScreen() {
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const pages = document.querySelectorAll('.page');
+    const announcer = document.getElementById('page-announce');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            const targetPage = this.getAttribute('data-page');
+    function showPage(pageId, updateHash = true) {
+        const targetPage = pageId.replace('#', '');
+        const targetElement = document.getElementById(targetPage + '-page');
+        
+        if (!targetElement) return;
 
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            pages.forEach(page => page.classList.remove('active'));
-
-            this.classList.add('active');
-            const targetElement = document.getElementById(targetPage + '-page');
-            if (targetElement) {
-                targetElement.classList.add('active');
-                // Scroll to top of page when switching
-                window.scrollTo(0, 0);
+        // Update links
+        navLinks.forEach(nav => {
+            if (nav.getAttribute('data-page') === targetPage) {
+                nav.classList.add('active');
+                nav.setAttribute('aria-current', 'page');
             } else {
-                console.error('Target page not found:', targetPage + '-page');
+                nav.classList.remove('active');
+                nav.removeAttribute('aria-current');
             }
         });
+
+        // Update pages
+        pages.forEach(page => page.classList.remove('active'));
+        targetElement.classList.add('active');
+
+        // Announce for screen readers
+        if (announcer) {
+            announcer.textContent = targetPage.charAt(0).toUpperCase() + targetPage.slice(1) + ' page loaded';
+        }
+
+        // Move focus for accessibility
+        const heading = targetElement.querySelector('h1, h2');
+        if (heading) {
+            heading.setAttribute('tabindex', '-1');
+            heading.focus({ preventScroll: true });
+        }
+
+        window.scrollTo(0, 0);
+
+        if (updateHash) {
+            history.pushState(null, null, '#' + targetPage);
+        }
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('data-page');
+            showPage(targetPage);
+        });
     });
+
+    // Handle initial hash or back/forward buttons
+    function handleRouting() {
+        const hash = window.location.hash.substring(1) || 'home';
+        showPage(hash, false);
+    }
+
+    window.addEventListener('popstate', handleRouting);
+    
+    // Initial load
+    handleRouting();
 }
 
 // ============================================
@@ -400,6 +440,7 @@ function createProjectCard(project, index) {
         card.href = project.links.view;
         card.target = '_blank';
         card.rel = 'noopener noreferrer';
+        card.setAttribute('aria-label', `View ${project.name} project`);
     }
 
     const imageSection = document.createElement('div');
@@ -447,11 +488,23 @@ function createProjectCard(project, index) {
         overlay.innerHTML = '<i class="fas fa-external-link-alt"></i>';
         imageSection.appendChild(overlay);
     } else if (project.image) {
+        const picture = document.createElement('picture');
+        // WebP source (if .webp versions exist alongside .jpg)
+        const webpSrc = project.image.replace(/\.jpg$/i, '.webp').replace(/\.png$/i, '.webp');
+        const sourceWebP = document.createElement('source');
+        sourceWebP.srcset = webpSrc;
+        sourceWebP.type = 'image/webp';
+        picture.appendChild(sourceWebP);
+
         const img = document.createElement('img');
         img.src = project.image;
-        img.alt = project.name;
+        img.alt = `${project.name} — ${project.description.substring(0, 80)}`;
         img.loading = 'lazy';
-        imageSection.appendChild(img);
+        img.width = 400;
+        img.height = 225;
+        img.decoding = 'async';
+        picture.appendChild(img);
+        imageSection.appendChild(picture);
     } else {
         const placeholder = document.createElement('div');
         placeholder.className = 'project-image-placeholder';
@@ -580,8 +633,9 @@ function createLinkButton(type, url, projectName = '') {
         <a href="${url}" 
            class="project-link" 
            ${isDownload ? 'download' : 'target="_blank"'}
-           ${isBrand ? 'rel="noopener noreferrer"' : ''}>
-            <i class="${iconClass} ${icons[type] || 'fa-link'}"></i>
+           rel="noopener noreferrer"
+           aria-label="${labels[type] || type} link for project">
+            <i class="${iconClass} ${icons[type] || 'fa-link'}" aria-hidden="true"></i>
             ${labels[type] || type}
         </a>
     `;
@@ -623,28 +677,6 @@ function filterProjects(category) {
     });
 }
 
-// ============================================
-// RESUME BUTTON
-// ============================================
-function initResumeButton() {
-    const resumeButton = document.getElementById('resume-preview-btn');
-    if (!resumeButton) return;
-
-    resumeButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (typeof openDocument === 'function') {
-            openDocument('assets/JayResume.pdf', 'pdf');
-        } else {
-            // Fallback to download if openDocument is not available
-            const link = document.createElement('a');
-            link.href = 'assets/JayResume.pdf';
-            link.download = 'JayVarma-Resume.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    });
-}
 
 // ============================================
 // DISCORD ACTIVITY (Lanyard)
@@ -760,7 +792,11 @@ function create3DModelCard(model, index) {
     // Static Thumbnail
     let thumbnailHTML;
     if (model.thumbnail) {
-        thumbnailHTML = `<img src="${model.thumbnail}" alt="${model.name}" class="model-card-thumbnail" loading="lazy">`;
+        const webpSrc = model.thumbnail.replace(/\.jpg$/i, '.webp').replace(/\.png$/i, '.webp');
+        thumbnailHTML = `<picture>
+            <source srcset="${webpSrc}" type="image/webp">
+            <img src="${model.thumbnail}" alt="${model.name} — 3D model by Jay Varma" class="model-card-thumbnail" loading="lazy" width="400" height="300" decoding="async">
+        </picture>`;
     } else {
         // Fallback placeholder - Cyberpunk Style
         thumbnailHTML = `
@@ -798,15 +834,27 @@ function create3DModelCard(model, index) {
 function navigateToPage(pageName) {
     const navLinks = document.querySelectorAll('.nav-link');
     const pages = document.querySelectorAll('.page');
+    const announcer = document.getElementById('page-announce');
 
-    navLinks.forEach(nav => nav.classList.remove('active'));
+    navLinks.forEach(nav => {
+        nav.classList.remove('active');
+        nav.removeAttribute('aria-current');
+    });
     pages.forEach(page => page.classList.remove('active'));
 
     const targetNav = document.querySelector(`.nav-link[data-page="${pageName}"]`);
     const targetPage = document.getElementById(pageName + '-page');
 
-    if (targetNav) targetNav.classList.add('active');
-    if (targetPage) targetPage.classList.add('active');
+    if (targetNav) {
+        targetNav.classList.add('active');
+        targetNav.setAttribute('aria-current', 'page');
+    }
+    if (targetPage) {
+        targetPage.classList.add('active');
+        if (announcer) {
+            announcer.textContent = pageName.charAt(0).toUpperCase() + pageName.slice(1) + ' page loaded';
+        }
+    }
     window.scrollTo(0, 0);
 }
 

@@ -1,0 +1,10 @@
+# robots.txt for jayvarma.site
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jayvarma.site/sitemap.xml
+
+# Disallow sensitive assets
+Disallow: /assets/DS Projects/
+Disallow: /assets/JayResume.pdf

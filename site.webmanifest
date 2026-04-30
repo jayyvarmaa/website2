@@ -1,0 +1,23 @@
+{
+  "name": "Jay Varma — Portfolio",
+  "short_name": "Jay Varma",
+  "description": "Game Developer, 3D Artist, and Data Scientist portfolio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#34aadb",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

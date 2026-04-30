@@ -1,42 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@jayyvarmaa</title>
+    <title>Jay Varma — Game Developer, 3D Artist & Data Scientist | Portfolio</title>
 
-    <meta property="og:title" content="Jay Varma">
-    <meta property="og:url" content="https://jayvarma.site">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/profile.jpg">
-    <meta property="og:description" content="Game Developer | 3D Artist | Data Scientist | B.Tech CSE Student">
+    <!-- Primary Meta Tags -->
     <meta name="description"
-        content="Portfolio of Jay Varma - Game Developer, 3D Artist, and Data Scientist showcasing games, web projects, 3D models, and machine learning work.">
+        content="Jay Varma's portfolio — Game Developer, 3D Artist, and Data Scientist from Surat, India. Explore Unity games, 3D models, machine learning projects, web apps, and cinematic work.">
+    <meta name="keywords"
+        content="Jay Varma, game developer, 3D artist, data scientist, Unity developer, Blender artist, machine learning, portfolio, web developer, Surat India, B.Tech CSE, indie game developer">
+    <meta name="author" content="Jay Varma">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://jayvarma.site/">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Jay Varma — Portfolio">
+    <meta property="og:title" content="Jay Varma — Game Developer, 3D Artist & Data Scientist">
+    <meta property="og:url" content="https://jayvarma.site/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://jayvarma.site/assets/embed.png">
+    <meta property="og:image:alt" content="Jay Varma — Game Developer, 3D Artist and Data Scientist">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:description"
+        content="Game Developer, 3D Artist, and Data Scientist from Surat, India. Explore Unity games, 3D models, ML projects, and cinematic work.">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Open Graph Video (Cinematic Short Film) -->
+    <meta property="og:video" content="https://www.youtube.com/embed/o_DbgIUeTB4">
+    <meta property="og:video:type" content="text/html">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jay Varma — Game Developer, 3D Artist & Data Scientist">
+    <meta name="twitter:description"
+        content="Explore Unity games, 3D models, ML projects, web apps, and cinematic work by Jay Varma.">
+    <meta name="twitter:image" content="https://jayvarma.site/assets/embed.png">
+    <meta name="twitter:image:alt" content="Jay Varma Portfolio">
+
+    <!-- Language -->
+    <link rel="alternate" hreflang="en" href="https://jayvarma.site/">
+    <link rel="alternate" hreflang="x-default" href="https://jayvarma.site/">
+
+    <!-- Search Console & Webmaster Verification (replace content values with your actual codes) -->
+    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE"> -->
+    <!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
+
+    <!-- Theme & App Meta -->
+    <meta name="theme-color" content="#34aadb">
+    <meta name="color-scheme" content="dark">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Jay Varma">
+
+    <!-- Favicons -->
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/favicon.png" sizes="180x180">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+    <link rel="dns-prefetch" href="https://api.lanyard.rest">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.1">
     <link rel="stylesheet" href="notebook_style.css">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- TensorFlow.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-
-    <!-- Notebook Dependencies (Marked, Prism) -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+
+    <!-- Critical CSS (inline above-the-fold) -->
+    <style>
+        body{font-family:'JetBrains Mono',monospace;background:#000;color:#34aadb;margin:0;min-height:100vh;display:flex;flex-direction:column}
+        .hidden{display:none!important}
+        .warning-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;justify-content:center;align-items:center;z-index:10000;color:#34aadb;font-family:'JetBrains Mono',monospace;text-align:center;padding:2rem}
+        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#34aadb;color:#000;padding:0.75rem 1.5rem;z-index:100000;border-radius:0 0 4px 4px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;text-decoration:none;transition:top 0.2s}
+        .skip-link:focus{top:0}
+    </style>
+
+    <!-- Deferred Scripts (non-critical, TF.js loaded on-demand) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js" defer></script>
+
+    <!-- Structured Data: Person (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jay Varma",
+        "url": "https://jayvarma.site",
+        "image": "https://jayvarma.site/assets/embed.png",
+        "jobTitle": ["Game Developer", "3D Artist", "Data Scientist"],
+        "description": "Game Developer, 3D Artist, and Data Scientist from Surat, India. B.Tech CSE student with expertise in Unity, Blender, Python, and machine learning.",
+        "email": "mailto:jaymayurvarma@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Surat",
+            "addressRegion": "Gujarat",
+            "addressCountry": "IN"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/in/jayyvarmaa",
+            "https://github.com/jayyvarmaa",
+            "https://jayyvarmaa.itch.io"
+        ],
+        "knowsAbout": ["Game Development", "Unity", "Unreal Engine", "3D Modeling", "Blender", "Data Science", "Machine Learning", "Python", "Web Development"],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "B.Tech CSE Program"
+        }
+    }
+    </script>
+
+    <!-- Structured Data: Website (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Jay Varma Portfolio",
+        "url": "https://jayvarma.site",
+        "description": "Portfolio website of Jay Varma — Game Developer, 3D Artist, and Data Scientist.",
+        "author": {
+            "@type": "Person",
+            "name": "Jay Varma"
+        }
+    }
+    </script>
+
+    <!-- Structured Data: Portfolio Projects (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Jay Varma's Projects",
+        "description": "A collection of game development, web, and data science projects by Jay Varma.",
+        "numberOfItems": 7,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Asteroids Game",
+                    "description": "A modern take on the classic Asteroids arcade game built with Unity and C#.",
+                    "url": "https://jayyvarmaa.itch.io/asteroids",
+                    "applicationCategory": "Game"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Cube Game",
+                    "description": "An exciting 3D cube-based game developed with Unity featuring advanced 3D mechanics.",
+                    "url": "https://jayyvarmaa.itch.io/cube",
+                    "applicationCategory": "Game"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "NoAn! Chrome Extension",
+                    "description": "A Chrome extension that disables annotations on YouTube videos.",
+                    "url": "https://noan.jayvarma.site",
+                    "applicationCategory": "BrowserExtension"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "RansomType",
+                    "description": "A free online tool that transforms text into random ransom-style newspaper cutout letters.",
+                    "url": "https://ransomtype.jayvarma.site",
+                    "applicationCategory": "WebApplication"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "MNIST Digit Recognition",
+                    "description": "Deep learning model for handwritten digit classification using Scikit-Learn.",
+                    "applicationCategory": "ScientificApplication"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Structured Data: VideoObject (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Osaka no Urami — Short Film",
+        "description": "A cinematic short film blending dramatic storytelling with immersive visuals, directed and produced by Jay Varma.",
+        "thumbnailUrl": "https://img.youtube.com/vi/o_DbgIUeTB4/maxresdefault.jpg",
+        "uploadDate": "2023-01-01",
+        "contentUrl": "https://www.youtube.com/watch?v=o_DbgIUeTB4",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/o_DbgIUeTB4",
+        "director": {
+            "@type": "Person",
+            "name": "Jay Varma"
+        },
+        "producer": {
+            "@type": "Person",
+            "name": "Jay Varma"
+        }
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://jayvarma.site/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Projects",
+                "item": "https://jayvarma.site/#projects"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "3D Gallery",
+                "item": "https://jayvarma.site/#gallery"
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Cinematic",
+                "item": "https://jayvarma.site/#cinematic"
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Experience",
+                "item": "https://jayvarma.site/#experience"
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Skills",
+                "item": "https://jayvarma.site/#skills"
+            },
+            {
+                "@type": "ListItem",
+                "position": 7,
+                "name": "Contact",
+                "item": "https://jayvarma.site/#contact"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
-    <div class="terminal-bg-overlay"></div>
-    <div class="terminal">
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <noscript>
+        <div style="text-align:center;padding:2rem;color:#34aadb;background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;">
+            <p>This portfolio requires JavaScript to display interactive content. Please enable JavaScript in your browser to view Jay Varma's portfolio.</p>
+        </div>
+    </noscript>
+    <div class="terminal-bg-overlay" aria-hidden="true"></div>
+    <!-- ARIA Live Region for page change announcements -->
+    <div id="page-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <main class="terminal" role="main" id="main-content">
         <!-- Warning Screen -->
-        <div id="warning-screen" class="warning-screen">
+        <div id="warning-screen" class="warning-screen" role="dialog" aria-label="Welcome screen">
             <div class="warning-content">
                 <h1>WARNING</h1>
                 <p>This site may contain traces of game development obsession</p>
@@ -45,43 +309,43 @@
             </div>
         </div>
 
-        <div class="top-nav hidden">
-            <button class="nav-link active" data-page="home">
+        <nav class="top-nav" aria-label="Main Navigation">
+            <a class="nav-link" href="#home" data-page="home">
                 <i class="fas fa-home"></i>
                 <span class="nav-text">home</span>
-            </button>
-            <button class="nav-link" data-page="projects">
+            </a>
+            <a class="nav-link" href="#projects" data-page="projects">
                 <i class="fas fa-code"></i>
                 <span class="nav-text">projects</span>
-            </button>
-            <button class="nav-link" data-page="gallery">
+            </a>
+            <a class="nav-link" href="#gallery" data-page="gallery">
                 <i class="fas fa-cube"></i>
                 <span class="nav-text">3D gallery</span>
-            </button>
-            <button class="nav-link" data-page="cinematic">
+            </a>
+            <a class="nav-link" href="#cinematic" data-page="cinematic">
                 <i class="fas fa-film"></i>
                 <span class="nav-text">cinematic</span>
-            </button>
-            <button class="nav-link" data-page="experience">
+            </a>
+            <a class="nav-link" href="#experience" data-page="experience">
                 <i class="fas fa-briefcase"></i>
                 <span class="nav-text">experience</span>
-            </button>
-            <button class="nav-link" data-page="skills">
+            </a>
+            <a class="nav-link" href="#skills" data-page="skills">
                 <i class="fas fa-tools"></i>
                 <span class="nav-text">skills</span>
-            </button>
-            <button class="nav-link" data-page="contact">
+            </a>
+            <a class="nav-link" href="#contact" data-page="contact">
                 <i class="fas fa-envelope"></i>
                 <span class="nav-text">contact</span>
-            </button>
-        </div>
+            </a>
+        </nav>
 
         <div class="terminal-content hidden">
             <!-- Home Page -->
-            <div id="home-page" class="page active">
-                <div class="profile-section">
+            <section id="home-page" class="page active" aria-label="Home">
+                <header class="profile-section">
                     <h1 class="terminal-title" id="name-clicker"><span class="underline-text">Jay Varma</span></h1>
-                </div>
+                </header>
                 <!-- Dictionary Definition Card -->
                 <div class="dict-card">
                     <div class="dict-header">
@@ -118,17 +382,17 @@
                 </div>
 
                 <div class="socials-section">
-                    <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i> <span class="social-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Jay Varma on LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i> <span class="social-label">LinkedIn</span>
                     </a>
                     <span class="separator">|</span>
-                    <a href="https://github.com/jayyvarmaa" target="_blank" class="social-link">
-                        <i class="fab fa-github"></i> <span class="social-label">GitHub</span>
+                    <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Jay Varma on GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i> <span class="social-label">GitHub</span>
                     </a>
                     <span class="separator">|</span>
-                    <button id="resume-preview-btn" class="social-link">
+                    <a href="assets/JayResume.pdf" download="JayVarma-Resume.pdf" class="social-link" id="resume-download-btn" aria-label="Download Jay Varma's Resume">
                         <i class="fas fa-file-pdf"></i> <span class="social-label">Resume</span>
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Gamer Quote -->
@@ -137,10 +401,11 @@
                             class="fas fa-quote-right"></i></p>
                     <p class="quote-author">- Every Developer Ever</p>
                 </div>
-            </div>
+
+            </section>
 
             <!-- Projects Page -->
-            <div id="projects-page" class="page">
+            <section id="projects-page" class="page" aria-label="Projects">
                 <div class="projects-header">
                     <h2 class="page-title">Projects</h2>
                     <p class="page-description">Some things I've built (when I wasn't debugging)</p>
@@ -166,10 +431,11 @@
                 <div class="projects-grid" id="projects-grid">
                     <!-- Projects will be dynamically inserted here -->
                 </div>
-            </div>
+
+            </section>
 
             <!-- 3D Gallery Page -->
-            <div id="gallery-page" class="page">
+            <section id="gallery-page" class="page" aria-label="3D Gallery">
                 <div class="projects-header">
                     <h2 class="page-title">3D Gallery</h2>
                     <p class="page-description">Click on any model to view it in full screen</p>
@@ -182,12 +448,11 @@
                     <i class="fas fa-info-circle"></i>
                     <p>More 3D models coming soon! Check back later for interactive previews.</p>
                 </div>
-            </div>
 
-
+            </section>
 
             <!-- Cinematic Page -->
-            <div id="cinematic-page" class="page">
+            <section id="cinematic-page" class="page" aria-label="Cinematic Work">
                 <div class="premiere-container">
                     <!-- Film Presentation -->
                     <div class="premiere-theater">
@@ -198,7 +463,8 @@
                         <div class="premiere-screen-wrapper">
                             <iframe id="main-yt-iframe"
                                 src="https://www.youtube-nocookie.com/embed/o_DbgIUeTB4?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
-                                title="Osaka no Urami - Short Film" frameborder="0"
+                                title="Osaka no Urami - Short Film by Jay Varma" frameborder="0"
+                                loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
@@ -231,15 +497,17 @@
                             <iframe id="bts-yt-iframe"
                                 src="https://www.youtube-nocookie.com/embed/Gy5I_NR_x8I?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
                                 title="Osaka no Urami - Behind The Scenes" frameborder="0"
+                                loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </section>
 
             <!-- Experience Page -->
-            <div id="experience-page" class="page">
+            <section id="experience-page" class="page" aria-label="Experience">
                 <div class="projects-header">
                     <h2 class="page-title">Experience</h2>
                     <p class="page-description">My professional journey (and caffeine addiction)</p>
@@ -291,10 +559,11 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+
+            </section>
 
             <!-- Skills Page -->
-            <div id="skills-page" class="page">
+            <section id="skills-page" class="page" aria-label="Skills">
                 <div class="projects-header">
                     <h2 class="page-title">Skills</h2>
                     <p class="page-description">Technical expertise and competencies (aka my superpowers)</p>
@@ -385,10 +654,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </section>
 
             <!-- Contact Page -->
-            <div id="contact-page" class="page">
+            <section id="contact-page" class="page" aria-label="Contact">
                 <div class="projects-header">
                     <h2 class="page-title">Contact</h2>
                     <p class="page-description">Let's connect and collaborate (or just chat about games)</p>
@@ -400,16 +670,16 @@
                         to reach out!</p>
 
                     <div class="contact-links">
-                        <a href="mailto:jaymayurvarma@gmail.com" class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                        <a href="mailto:jaymayurvarma@gmail.com" class="contact-item" aria-label="Email Jay Varma">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <span>jaymayurvarma@gmail.com</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" class="contact-item">
-                            <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Jay Varma LinkedIn profile">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
                             <span>linkedin.com/in/jayyvarmaa</span>
                         </a>
-                        <a href="https://github.com/jayyvarmaa" target="_blank" class="contact-item">
-                            <i class="fab fa-github"></i>
+                        <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Jay Varma GitHub profile">
+                            <i class="fab fa-github" aria-hidden="true"></i>
                             <span>github.com/jayyvarmaa</span>
                         </a>
                         <div class="contact-item">
@@ -423,22 +693,24 @@
                 <div class="gamer-contact-message">
                     <p>PS: I promise to respond faster than a player reflex in a competitive match!</p>
                 </div>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-content">
-            <p>&copy; 2026 Jay Varma</p>
+            <p>&copy; 2026 Jay Varma. All rights reserved.</p>
         </div>
     </footer>
-    </div>
 
 
 
     <script src="notebook_viewer.js"></script>
     <script src="assets/DS Projects/MNIST Handwritten Digit Recognizer/mnist_notebook_data.js"></script>
     <script src="script.js"></script>
+
+    <!-- Privacy-friendly Analytics (Plausible - replace with your domain or remove if not needed) -->
+    <!-- <script defer data-domain="jayvarma.site" src="https://plausible.io/js/script.js"></script> -->
 </body>
 
 </html>

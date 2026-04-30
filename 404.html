@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | Jay Varma</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Jay Varma's portfolio.">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #000;
+            color: #34aadb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1;
+            text-shadow: 0 0 15px #34aadb, 0 0 30px rgba(52,170,219,.4);
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        .error-description {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+        .error-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            color: #000;
+            background: #34aadb;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .error-home:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(52,170,219,.5);
+        }
+        .error-terminal {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+        .error-terminal span { color: #EB553D; }
+    </style>
+</head>
+<body>
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-description">Looks like you wandered into an uncharted level. This page doesn't exist or has been moved.</p>
+    <a href="/" class="error-home">&#8592; Return to Portfolio</a>
+    <p class="error-terminal"><span>$</span> cd /home &mdash; press Enter to respawn</p>
+</body>
+</html>
