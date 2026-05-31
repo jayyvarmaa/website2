@@ -838,9 +838,8 @@ ul {
 }
 
 .sketchfab-embed-wrapper {
+  width: 100%;
   height: 100%;
-  aspect-ratio: 16/9;
-  max-width: calc(95vw - 350px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -872,29 +871,14 @@ ul {
     border-top: 1px solid var(--border);
   }
 
-  /* Fullscreen Sketchfab Modals on Mobile */
+  /* Sketchfab Modals on Mobile */
   .modal-overlay.is-sketchfab .modal-info-section {
     display: none !important;
   }
   
   .modal-overlay.is-sketchfab .modal-media-section {
-    max-height: 100vh !important;
-    height: 100vh !important;
-  }
-  
-  .modal-overlay.is-sketchfab .sketchfab-embed-wrapper {
-    height: 100vh !important;
-    max-height: 100vh !important;
-    max-width: 100vw !important;
-    aspect-ratio: auto !important;
-  }
-  
-  .modal-overlay.is-sketchfab .modal-container {
-    height: 100vh !important;
-    width: 100vw !important;
-    border-radius: 0 !important;
-    border: none !important;
-    margin: 0 !important;
+    max-height: none !important;
+    height: 100% !important;
   }
 }
 
