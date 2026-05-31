@@ -173,7 +173,7 @@
 
   // Load Lanyard texture
   const textureLoader = new THREE.TextureLoader();
-  const lanyardTexture = textureLoader.load('assets/lanyard/lanyard.png');
+  const lanyardTexture = textureLoader.load('/assets/lanyard/lanyard.png?v=2');
   lanyardTexture.wrapS = THREE.RepeatWrapping;
   lanyardTexture.wrapT = THREE.RepeatWrapping;
   lanyardTexture.encoding = THREE.sRGBEncoding;
@@ -194,8 +194,11 @@
   const cardGroup = new THREE.Group();
   let cardLoaded = false;
 
+window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = resolve);
+
   const gltfLoader = THREE.GLTFLoader ? new THREE.GLTFLoader() : new GLTFLoader();
-  gltfLoader.load('assets/lanyard/card.glb', (gltf) => {
+  gltfLoader.load('/assets/lanyard/card.glb?v=2', (gltf) => {
+    if (window.resolveLanyardCard) window.resolveLanyardCard();
     const model = gltf.scene;
 
     model.traverse((child) => {

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogoLoops();
     initTooltips();
     initLanyardDelay();
+    loadPostsIntoGallery();
 });
 
 // ============================================
@@ -235,6 +236,8 @@ function initMediaModals() {
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     };
+    
+    window.openMediaModal = openModal;
 
     // 3D Model Card Triggers
     const galleryCards = document.querySelectorAll('.gallery-card');
@@ -245,7 +248,7 @@ function initMediaModals() {
             const tech = card.getAttribute('data-tech');
             const sketchfabId = card.getAttribute('data-sketchfab');
             
-            const embedHTML = `<iframe src="https://sketchfab.com/models/${sketchfabId}/embed?autostart=1&internal=1&tracking=0" title="${name}" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share></iframe>`;
+            const embedHTML = `<div class="sketchfab-embed-wrapper"><iframe src="https://sketchfab.com/models/${sketchfabId}/embed?autostart=1&internal=1&tracking=0" title="${name}" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share></iframe></div>`;
             
             openModal(name, desc, embedHTML, tech, sketchfabId);
         });
@@ -663,6 +666,270 @@ function initLanyardDelay() {
         hideHintTimeoutId = setTimeout(() => {
             hideHintInstantly();
         }, 11000);
+    }
+}
+
+// ============================================
+// DYNAMIC POSTS GALLERY
+// ============================================
+async function loadPostsIntoGallery() {
+    const postsDir = 'assets/Posts';
+    const galleryGrid = document.getElementById('gallery-grid');
+    if (!galleryGrid) return;
+
+    let postsData = [];
+    try {
+        const response = await fetch('assets/posts_manifest.json');
+        postsData = await response.json();
+    } catch (e) {
+        console.error('Failed to load posts manifest:', e);
+        return;
+    }
+
+    if (postsData.length === 0) return;
+
+    // Background preloader for instant carousel shuffles - Sequential Tiered Loading
+    window._preloadedPostMedia = [];
+    
+    (async function sequentialPreload() {
+        // Tier 1: Wait for card.glb to finish loading
+        if (window.lanyardCardLoaded) {
+            await window.lanyardCardLoaded;
+        }
+
+        // Helper to strictly load media and wait for completion
+        const loadMedia = (src, isVideo) => new Promise((resolve) => {
+            if (isVideo) {
+                const vid = document.createElement('video');
+                vid.preload = 'auto';
+                vid.onloadeddata = resolve;
+                vid.onerror = resolve; // Resolve anyway to avoid blocking queue
+                vid.src = src;
+                window._preloadedPostMedia.push(vid);
+            } else {
+                const img = new Image();
+                img.onload = resolve;
+                img.onerror = resolve;
+                img.src = src;
+                window._preloadedPostMedia.push(img);
+            }
+        });
+
+        // Tier 2: Thumbnail webps are natively handled by HTML parsing priority.
+        
+        // Tier 3: All the 0 images (excluding videos as they are handled in tier 4)
+        let tier3Batch = [];
+        postsData.forEach(post => {
+            const file = post.images[0];
+            if (file && !file.toLowerCase().endsWith('.mp4')) {
+                tier3Batch.push(loadMedia(`${postsDir}/${post.folder}/${file}`, false));
+            }
+        });
+        await Promise.all(tier3Batch);
+
+        // Tier 4: All the videos showcased across all posts
+        let tier4Batch = [];
+        postsData.forEach(post => {
+            post.images.forEach(file => {
+                if (file.toLowerCase().endsWith('.mp4')) {
+                    tier4Batch.push(loadMedia(`${postsDir}/${post.folder}/${file}`, true));
+                }
+            });
+        });
+        await Promise.all(tier4Batch);
+
+        // Tier 5+: All the 1 images, then 2 images, then 3 images, sequentially
+        let maxImages = Math.max(...postsData.map(p => p.images.length));
+        for (let i = 1; i < maxImages; i++) {
+            let batch = [];
+            postsData.forEach(post => {
+                const file = post.images[i];
+                if (file && !file.toLowerCase().endsWith('.mp4')) {
+                    batch.push(loadMedia(`${postsDir}/${post.folder}/${file}`, false));
+                }
+            });
+            if (batch.length > 0) {
+                await Promise.all(batch);
+            }
+        }
+    })();
+
+    const first3DModel = galleryGrid.firstElementChild;
+
+    postsData.forEach((post) => {
+        // Create the gallery card for the post
+        const card = document.createElement('article');
+        card.className = 'gallery-card';
+        card.setAttribute('data-name', `Post #${post.post_num}`);
+        card.setAttribute('data-desc', `A creative post containing ${post.image_count} media items.`);
+        
+        // Find the first item to use as thumbnail (usually 0.png, 0.mp4, etc.)
+        const firstItem = post.images[0];
+        const isVideoThumb = firstItem.endsWith('.mp4');
+        const thumbSrc = `${postsDir}/${post.folder}/${firstItem}`;
+
+        let thumbHTML = '';
+        if (isVideoThumb) {
+            thumbHTML = `<video src="${thumbSrc}" muted autoplay loop playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>`;
+        } else {
+            thumbHTML = `<img src="${thumbSrc}" alt="Post ${post.post_num} thumbnail" loading="lazy" width="400" height="300">`;
+        }
+
+        card.innerHTML = `
+            <div class="gallery-thumb">
+                ${thumbHTML}
+            </div>
+        `;
+
+        // Click handler to open the modal carousel
+        card.addEventListener('click', () => {
+            openPostCarouselModal(post, postsDir);
+        });
+
+        if (first3DModel) {
+            galleryGrid.insertBefore(card, first3DModel);
+        } else {
+            galleryGrid.appendChild(card);
+        }
+    });
+}
+
+function openPostCarouselModal(post, postsDir) {
+    // We will dynamically determine the aspect ratio of the 0th image/video
+    const firstItem = post.images[0];
+    const firstItemSrc = `${postsDir}/${post.folder}/${firstItem}`;
+    const isVideo = firstItem.endsWith('.mp4');
+    
+    const buildAndOpenModal = (aspectRatio) => {
+        let currentIdx = 0;
+        
+        const updateMedia = (container, idx) => {
+            const item = post.images[idx];
+            const src = `${postsDir}/${post.folder}/${item}`;
+            const isVid = item.endsWith('.mp4');
+            
+            if (isVid) {
+                container.innerHTML = `<video class="modal-carousel-media" src="${src}" autoplay loop playsinline controls></video>`;
+            } else {
+                container.innerHTML = `<img class="modal-carousel-media" src="${src}" alt="Post media">`;
+            }
+            
+            const counter = document.getElementById('modal-carousel-counter-text');
+            if (counter) counter.textContent = `${idx + 1} / ${post.images.length}`;
+            
+            // Update dots
+            document.querySelectorAll('.modal-carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === idx);
+            });
+        };
+
+        let controlsHTML = '';
+        
+        if (post.images.length > 1) {
+            let dotsHTML = '<div class="modal-carousel-dots">';
+            for(let i=0; i < post.images.length; i++) {
+                dotsHTML += `<div class="modal-carousel-dot ${i === 0 ? 'active' : ''}" data-idx="${i}"></div>`;
+            }
+            dotsHTML += '</div>';
+
+            controlsHTML = `
+                <div class="modal-carousel-overlay">
+                    <div class="modal-carousel-counter" id="modal-carousel-counter-text">1 / ${post.images.length}</div>
+                </div>
+
+                <button class="modal-carousel-arrow modal-carousel-prev" id="modal-carousel-prev" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="modal-carousel-arrow modal-carousel-next" id="modal-carousel-next" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                
+                ${dotsHTML}
+            `;
+        }
+
+        const carouselHTML = `
+            <div class="modal-carousel-container" style="--aspect-ratio: ${aspectRatio};">
+                <div id="modal-carousel-content" style="width:100%; height:100%;"></div>
+                ${controlsHTML}
+            </div>
+        `;
+
+        // Use the globally exposed openMediaModal
+        if (window.openMediaModal) {
+            window.openMediaModal(`Post #${post.post_num}`, `Creative showcase with ${post.image_count} items.`, carouselHTML, null, null);
+            
+            // Bind events after modal is populated
+            setTimeout(() => {
+                const contentContainer = document.getElementById('modal-carousel-content');
+                if (!contentContainer) return;
+                
+                updateMedia(contentContainer, 0);
+                
+                const prevBtn = document.getElementById('modal-carousel-prev');
+                const nextBtn = document.getElementById('modal-carousel-next');
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        currentIdx = (currentIdx - 1 + post.images.length) % post.images.length;
+                        updateMedia(contentContainer, currentIdx);
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        currentIdx = (currentIdx + 1) % post.images.length;
+                        updateMedia(contentContainer, currentIdx);
+                    });
+                }
+                
+                document.querySelectorAll('.modal-carousel-dot').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        currentIdx = parseInt(e.target.getAttribute('data-idx'));
+                        updateMedia(contentContainer, currentIdx);
+                    });
+                });
+                
+                // Keyboard navigation for modal carousel
+                const keydownHandler = (e) => {
+                    const modal = document.getElementById('media-modal');
+                    if (!modal || !modal.classList.contains('active')) {
+                        document.removeEventListener('keydown', keydownHandler);
+                        return;
+                    }
+                    if (e.key === 'ArrowLeft') {
+                        document.getElementById('modal-carousel-prev')?.click();
+                    } else if (e.key === 'ArrowRight') {
+                        document.getElementById('modal-carousel-next')?.click();
+                    }
+                };
+                document.addEventListener('keydown', keydownHandler);
+                
+            }, 50);
+        }
+    };
+
+    // Calculate aspect ratio
+    if (isVideo) {
+        const video = document.createElement('video');
+        video.onloadedmetadata = () => {
+            const ratio = video.videoWidth / video.videoHeight;
+            buildAndOpenModal(ratio);
+        };
+        video.onerror = () => buildAndOpenModal('16/9');
+        video.src = firstItemSrc;
+    } else {
+        const img = new Image();
+        img.onload = () => {
+            const ratio = img.naturalWidth / img.naturalHeight;
+            buildAndOpenModal(ratio);
+        };
+        img.onerror = () => buildAndOpenModal('16/9');
+        img.src = firstItemSrc;
     }
 }
 
