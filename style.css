@@ -871,6 +871,31 @@ ul {
     border-left: none;
     border-top: 1px solid var(--border);
   }
+
+  /* Fullscreen Sketchfab Modals on Mobile */
+  .modal-overlay.is-sketchfab .modal-info-section {
+    display: none !important;
+  }
+  
+  .modal-overlay.is-sketchfab .modal-media-section {
+    max-height: 100vh !important;
+    height: 100vh !important;
+  }
+  
+  .modal-overlay.is-sketchfab .sketchfab-embed-wrapper {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+    aspect-ratio: auto !important;
+  }
+  
+  .modal-overlay.is-sketchfab .modal-container {
+    height: 100vh !important;
+    width: 100vw !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+  }
 }
 
 /* Modal Carousel Styles */

@@ -221,6 +221,7 @@ function initMediaModals() {
 
         // Action button for Sketchfab models
         if (sketchfabId) {
+            modal.classList.add('is-sketchfab');
             modalActionWrapper.style.display = 'block';
             modalActionWrapper.innerHTML = `
                 <a href="https://sketchfab.com/3d-models/${sketchfabId}" target="_blank" rel="noopener noreferrer" class="project-link-btn">
@@ -228,6 +229,7 @@ function initMediaModals() {
                 </a>
             `;
         } else {
+            modal.classList.remove('is-sketchfab');
             modalActionWrapper.style.display = 'none';
             modalActionWrapper.innerHTML = '';
         }
