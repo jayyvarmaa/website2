@@ -44,3 +44,4 @@ Thumbs.db
 
 # EXCEPT robots.txt, which is required for SEO/crawlers
 !robots.txt
+assets/Posts/*.mp4
