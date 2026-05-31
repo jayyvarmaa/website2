@@ -784,6 +784,11 @@ ul {
   transform: scale(1) translateY(0);
 }
 
+.modal-overlay.is-sketchfab .modal-container.instagram-style {
+  width: 95vw;
+  max-width: 1400px;
+}
+
 .modal-close-global {
   position: absolute;
   top: 20px;
@@ -873,14 +878,20 @@ ul {
     border-top: 1px solid var(--border);
   }
 
-  /* Sketchfab Modals on Mobile */
-  .modal-overlay.is-sketchfab .modal-info-section {
+  /* Sketchfab and Post Modals on Mobile */
+  .modal-overlay.is-sketchfab .modal-info-section,
+  .modal-overlay.is-post .modal-info-section {
     display: none !important;
   }
   
-  .modal-overlay.is-sketchfab .modal-media-section {
+  .modal-overlay.is-sketchfab .modal-media-section,
+  .modal-overlay.is-post .modal-media-section {
     max-height: none !important;
     height: 100% !important;
+  }
+  
+  .modal-overlay.is-post .modal-carousel-container {
+    max-width: 100vw !important;
   }
 }
 

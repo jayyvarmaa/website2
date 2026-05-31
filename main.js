@@ -234,6 +234,13 @@ function initMediaModals() {
             modalActionWrapper.innerHTML = '';
         }
 
+        // Tag modal if it's a Post
+        if (name && name.startsWith('Post #')) {
+            modal.classList.add('is-post');
+        } else {
+            modal.classList.remove('is-post');
+        }
+
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
