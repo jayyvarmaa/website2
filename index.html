@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <title>Jay Varma — Game Developer, 3D Artist & Data Scientist | Portfolio</title>
+    <title>@jayyvarmaa </title>
 
     <!-- Primary Meta Tags -->
     <meta name="description"
@@ -47,10 +48,6 @@
     <link rel="alternate" hreflang="en" href="https://jayvarma.site/">
     <link rel="alternate" hreflang="x-default" href="https://jayvarma.site/">
 
-    <!-- Search Console & Webmaster Verification (replace content values with your actual codes) -->
-    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE"> -->
-    <!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
-
     <!-- Theme & App Meta -->
     <meta name="theme-color" content="#34aadb">
     <meta name="color-scheme" content="dark">
@@ -66,7 +63,7 @@
     <link rel="apple-touch-icon" href="assets/favicon.png" sizes="180x180">
 
     <!-- Web App Manifest -->
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="site.webmanifest">
 
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,19 +77,9 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="notebook_style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Critical CSS (inline above-the-fold) -->
-    <style>
-        body{font-family:'JetBrains Mono',monospace;background:#000;color:#34aadb;margin:0;min-height:100vh;display:flex;flex-direction:column}
-        .hidden{display:none!important}
-        .warning-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;justify-content:center;align-items:center;z-index:10000;color:#34aadb;font-family:'JetBrains Mono',monospace;text-align:center;padding:2rem}
-        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#34aadb;color:#000;padding:0.75rem 1.5rem;z-index:100000;border-radius:0 0 4px 4px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;text-decoration:none;transition:top 0.2s}
-        .skip-link:focus{top:0}
-    </style>
 
     <!-- Deferred Scripts (non-critical, TF.js loaded on-demand) -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
@@ -151,7 +138,7 @@
         "@type": "ItemList",
         "name": "Jay Varma's Projects",
         "description": "A collection of game development, web, and data science projects by Jay Varma.",
-        "numberOfItems": 7,
+        "numberOfItems": 6,
         "itemListElement": [
             {
                 "@type": "ListItem",
@@ -232,248 +219,644 @@
         }
     }
     </script>
-
-    <!-- Structured Data: BreadcrumbList (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://jayvarma.site/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Projects",
-                "item": "https://jayvarma.site/#projects"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "3D Gallery",
-                "item": "https://jayvarma.site/#gallery"
-            },
-            {
-                "@type": "ListItem",
-                "position": 4,
-                "name": "Cinematic",
-                "item": "https://jayvarma.site/#cinematic"
-            },
-            {
-                "@type": "ListItem",
-                "position": 5,
-                "name": "Experience",
-                "item": "https://jayvarma.site/#experience"
-            },
-            {
-                "@type": "ListItem",
-                "position": 6,
-                "name": "Skills",
-                "item": "https://jayvarma.site/#skills"
-            },
-            {
-                "@type": "ListItem",
-                "position": 7,
-                "name": "Contact",
-                "item": "https://jayvarma.site/#contact"
-            }
-        ]
-    }
-    </script>
 </head>
 
 <body>
     <!-- Skip to Content Link (Accessibility) -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
 
     <noscript>
-        <div style="text-align:center;padding:2rem;color:#34aadb;background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;">
-            <p>This portfolio requires JavaScript to display interactive content. Please enable JavaScript in your browser to view Jay Varma's portfolio.</p>
+        <div
+            style="text-align:center;padding:2rem;color:#34aadb;background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;">
+            <p>This portfolio requires JavaScript to display interactive content. Please enable JavaScript in your
+                browser to view Jay Varma's portfolio.</p>
         </div>
     </noscript>
-    <div class="terminal-bg-overlay" aria-hidden="true"></div>
-    <!-- ARIA Live Region for page change announcements -->
-    <div id="page-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-    <main class="terminal" role="main" id="main-content">
-        <!-- Warning Screen -->
-        <div id="warning-screen" class="warning-screen" role="dialog" aria-label="Welcome screen">
-            <div class="warning-content">
-                <h1>WARNING</h1>
-                <p>This site may contain traces of game development obsession</p>
-                <p>To continue, please press <span class="key">E</span> on your keyboard</p>
-                <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">&copy; 2026 Jay Varma</p>
+
+    <!-- Header Navigation -->
+    <header class="header" role="banner">
+        <div class="container nav-container">
+            <a href="#home" class="logo" id="logo-branding" aria-label="Jay Varma Home">
+                Jay <span>Varma</span>
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false"
+                aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu" id="nav-menu" role="navigation" aria-label="Main Navigation">
+                <a class="nav-link active" href="#home" id="nav-home">Home</a>
+                <a class="nav-link" href="#projects" id="nav-projects">Projects</a>
+                <a class="nav-link" href="#gallery" id="nav-gallery">Gallery</a>
+                <a class="nav-link" href="#cinematic" id="nav-cinematic">Cinematic</a>
+                <a class="nav-link" href="#experience" id="nav-experience">Experience</a>
+                <a class="nav-link" href="#skills" id="nav-skills">Skills</a>
+                <a class="nav-link" href="#contact" id="nav-contact">Contact</a>
+
+                <div class="nav-socials">
+                    <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer"
+                        class="social-icon-btn" aria-label="GitHub Profile" id="nav-social-github">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer"
+                        class="social-icon-btn" aria-label="LinkedIn Profile" id="nav-social-linkedin">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" role="main">
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section" aria-label="Hero Introduction">
+            <div class="container hero-content">
+                <div class="hero-text-container">
+                    <div class="reveal">
+                        <h1 class="hero-title">
+                            <span>Game Developer</span><br>
+                            · 3D Artist
+                        </h1>
+                        <p class="hero-tagline">
+                            Building games, crafting worlds, and lingering around.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn btn-primary" id="hero-cta-projects">
+                                <i class="fas fa-arrow-down" aria-hidden="true"></i> View Projects
+                            </a>
+                            <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-secondary" id="hero-cta-github">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Animated Stat Counters -->
+                    <div class="hero-stats reveal delay-100" id="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-num" id="stat-projects" data-target="12">0+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" id="stat-categories" data-target="5">0+</span>
+                            <span class="stat-label">Categories</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" id="stat-models" data-target="3">0+</span>
+                            <span class="stat-label">3D Models</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Physics Lanyard Container -->
+        <div id="lanyard-container" class="hero-lanyard-container">
+            <canvas id="lanyard-canvas"></canvas>
+            <div id="lanyard-hint" class="lanyard-hint">
+                <p>Pull me</p>
             </div>
         </div>
 
-        <nav class="top-nav" aria-label="Main Navigation">
-            <a class="nav-link" href="#home" data-page="home">
-                <i class="fas fa-home"></i>
-                <span class="nav-text">home</span>
-            </a>
-            <a class="nav-link" href="#projects" data-page="projects">
-                <i class="fas fa-code"></i>
-                <span class="nav-text">projects</span>
-            </a>
-            <a class="nav-link" href="#gallery" data-page="gallery">
-                <i class="fas fa-cube"></i>
-                <span class="nav-text">3D gallery</span>
-            </a>
-            <a class="nav-link" href="#cinematic" data-page="cinematic">
-                <i class="fas fa-film"></i>
-                <span class="nav-text">cinematic</span>
-            </a>
-            <a class="nav-link" href="#experience" data-page="experience">
-                <i class="fas fa-briefcase"></i>
-                <span class="nav-text">experience</span>
-            </a>
-            <a class="nav-link" href="#skills" data-page="skills">
-                <i class="fas fa-tools"></i>
-                <span class="nav-text">skills</span>
-            </a>
-            <a class="nav-link" href="#contact" data-page="contact">
-                <i class="fas fa-envelope"></i>
-                <span class="nav-text">contact</span>
-            </a>
-        </nav>
-
-        <div class="terminal-content hidden">
-            <!-- Home Page -->
-            <section id="home-page" class="page active" aria-label="Home">
-                <header class="profile-section">
-                    <h1 class="terminal-title" id="name-clicker"><span class="underline-text">Jay Varma</span></h1>
-                </header>
-                <!-- Dictionary Definition Card -->
-                <div class="dict-card">
-                    <div class="dict-header">
-                        <button class="dict-speaker" id="dict-audio-btn" title="Listen to pronunciation">
-                            <i class="fas fa-volume-up"></i>
-                        </button>
-                        <div class="dict-word-group">
-                            <span class="dict-word">poly&middot;math</span>
-                            <span class="dict-phonetic">[&#x2C8;p&#x252;l&#x26A;ma&#x3B8;]</span>
-                        </div>
-                    </div>
-                    <span class="dict-pos-badge">Noun</span>
-                    <div class="dict-forms">polymath (noun) &middot; polymaths (plural noun)</div>
-                    <div class="dict-definition">
-                        <span class="dict-def-num">1.</span> a person of wide knowledge or learning:
-                        <span class="dict-example">&quot;a Renaissance polymath&quot;</span>
-                    </div>
+        <!-- Projects Section -->
+        <section id="projects" class="section" aria-label="Portfolio Projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-subtitle">Some things I've built (when I wasn't debugging)</p>
                 </div>
 
-                <!-- Stats Section -->
-                <div class="stats-section">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="7">0</span>
-                        <span class="stat-label">Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="3">0</span>
-                        <span class="stat-label">Categories</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="3">0</span>
-                        <span class="stat-label">3D Models</span>
-                    </div>
-                </div>
-
-                <div class="socials-section">
-                    <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Jay Varma on LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i> <span class="social-label">LinkedIn</span>
-                    </a>
-                    <span class="separator">|</span>
-                    <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Jay Varma on GitHub">
-                        <i class="fab fa-github" aria-hidden="true"></i> <span class="social-label">GitHub</span>
-                    </a>
-                    <span class="separator">|</span>
-                    <a href="assets/JayResume.pdf" download="JayVarma-Resume.pdf" class="social-link" id="resume-download-btn" aria-label="Download Jay Varma's Resume">
-                        <i class="fas fa-file-pdf"></i> <span class="social-label">Resume</span>
-                    </a>
-                </div>
-
-                <!-- Gamer Quote -->
-                <div class="gamer-quote">
-                    <p><i class="fas fa-quote-left"></i> &quot;It's not a bug, it's a feature!&quot; <i
-                            class="fas fa-quote-right"></i></p>
-                    <p class="quote-author">- Every Developer Ever</p>
-                </div>
-
-            </section>
-
-            <!-- Projects Page -->
-            <section id="projects-page" class="page" aria-label="Projects">
-                <div class="projects-header">
-                    <h2 class="page-title">Projects</h2>
-                    <p class="page-description">Some things I've built (when I wasn't debugging)</p>
-                </div>
-
-                <!-- Category Filter Tabs -->
-                <div class="category-filters">
-                    <button class="filter-btn active" data-category="all">
-                        <i class="fas fa-th"></i> All
+                <!-- Category Filters -->
+                <div class="filters-container reveal delay-100">
+                    <button class="filter-btn active" data-category="all" id="filter-all">
+                        All
                     </button>
-                    <button class="filter-btn" data-category="games">
-                        <i class="fas fa-gamepad"></i> Games
+                    <button class="filter-btn" data-category="featured" id="filter-featured">
+                        Featured
                     </button>
-                    <button class="filter-btn" data-category="web">
-                        <i class="fas fa-globe"></i> Web
+                    <button class="filter-btn" data-category="games" id="filter-games">
+                        Games
                     </button>
-                    <button class="filter-btn" data-category="datascience">
-                        <i class="fas fa-brain"></i> Data Science
+                    <button class="filter-btn" data-category="web" id="filter-web">
+                        Web
+                    </button>
+                    <button class="filter-btn" data-category="datascience" id="filter-datascience">
+                        Data Science
                     </button>
                 </div>
 
                 <!-- Projects Grid -->
-                <div class="projects-grid" id="projects-grid">
-                    <!-- Projects will be dynamically inserted here -->
+                <div class="projects-grid reveal delay-200" id="projects-grid">
+
+                    <!-- EnJinn Engine -->
+                    <article class="project-card" data-category="featured" id="project-enjinn">
+                        <a href="https://enjinn.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View EnJinn Engine">
+                            <picture>
+                                <source srcset="assets/thumbnails/EnJinn%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/EnJinn%20Thumbnail.jpg" alt="EnJinn Game Engine preview"
+                                    loading="lazy" width="400" height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Featured</span>
+                                <span class="project-badge">Latest</span>
+                            </div>
+                            <h3 class="project-name">EnJinn - A Game Engine</h3>
+                            <p class="project-desc">A modular C++17 game engine showcasing production-grade subsystem design. Features container-based architecture, DLL hot-reload for instant iteration, and an integrated ImGui editor with profiling and diagnostics.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">C++17</span>
+                                    <span class="tech-tag">OpenGL</span>
+                                    <span class="tech-tag">CMake</span>
+                                    <span class="tech-tag">GLFW</span>
+                                    <span class="tech-tag">Dear ImGui</span>
+                                    <span class="tech-tag">Box2D</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://enjinn.jayvarma.site" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="Explore EnJinn Engine">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Explore
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    
+                    <!-- Asteroids Game -->
+                    <article class="project-card" data-category="games" id="project-asteroids">
+                        <a href="https://jayyvarmaa.itch.io/asteroids" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View Asteroids game details">
+                            <picture>
+                                <source srcset="assets/thumbnails/Asterioid%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/Asterioid%20Thumbnail.jpg" alt="Asteroids gameplay preview"
+                                    loading="lazy" width="400" height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Games</span>
+                            </div>
+                            <h3 class="project-name">Asteroids Game</h3>
+                            <p class="project-desc">A modern take on the classic Asteroids arcade game. Experience retro
+                                gaming with enhanced visuals and smooth controls in this space shooter.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">Unity</span>
+                                    <span class="tech-tag">C#</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://jayyvarmaa.itch.io/asteroids" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="Play Asteroids Game on Itch.io">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Play
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cube Game -->
+                    <article class="project-card" data-category="games" id="project-cube">
+                        <a href="https://jayyvarmaa.itch.io/cube" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View Cube game details">
+                            <picture>
+                                <source srcset="assets/thumbnails/cube%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/cube%20Thumbnail.jpg" alt="Cube game preview" loading="lazy"
+                                    width="400" height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Games</span>
+                            </div>
+                            <h3 class="project-name">Cube Game</h3>
+                            <p class="project-desc">An exciting 3D cube-based game developed under VarmaBrothers.
+                                Features advanced 3D physics mechanics, level design, and fast mechanics.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">Unity</span>
+                                    <span class="tech-tag">C#</span>
+                                    <span class="tech-tag">3D Asset Design</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://jayyvarmaa.itch.io/cube" target="_blank" rel="noopener noreferrer"
+                                        class="project-link-btn" aria-label="Play Cube Game on Itch.io">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Play
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- EnJinn Website -->
+                    <article class="project-card" data-category="web" id="project-enjinnweb">
+                        <a href="https://enjinn.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View EnJinn Website">
+                            <picture>
+                                <source srcset="assets/thumbnails/EnJinn%20Website%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/EnJinn%20Website%20Thumbnail.jpg"
+                                    alt="EnJinn Website showcase" loading="lazy" width="400"
+                                    height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">EnJinn Website</h3>
+                            <p class="project-desc">Comprehensive showcase of EnJinn's architecture, capabilities, and technical foundations. Explore the modular design patterns, memory management strategies, and integrated development workflow that power the engine.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">Vanilla CSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://enjinn.jayvarma.site" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View EnJinn Website">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Explore
+                                    </a>
+                                    <a href="https://github.com/jayyvarmaa/enjinnweb" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View EnJinn Website source code">
+                                        <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ForMD - Markdown Editor -->
+                    <article class="project-card" data-category="web" id="project-formd">
+                        <a href="https://formd.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="Open ForMD Markdown Editor">
+                            <picture>
+                                <source srcset="assets/thumbnails/ForMD%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/ForMD%20Thumbnail.jpg"
+                                    alt="ForMD Markdown editor preview" loading="lazy" width="400"
+                                    height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">ForMD</h3>
+                            <p class="project-desc">Premium client-side Markdown editor with GitHub-style rendering, skeomorphic design, live preview, Mermaid diagrams, and complete privacy.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">Marked.js</span>
+                                    <span class="tech-tag">Mermaid</span>
+                                    <span class="tech-tag">MathJax</span>
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://formd.jayvarma.site" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="Open ForMD Editor">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Explore
+                                    </a>
+                                    <a href="https://github.com/jayyvarmaa/formd" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View ForMD source code">
+                                        <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SalesHub - Lead Management Portal -->
+                    <article class="project-card" data-category="web" id="project-saleshub">
+                        <a href="https://sales.jayvarma.site/login" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="Open SalesHub Portal">
+                            <picture>
+                                <source srcset="assets/thumbnails/SalesHub%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/SalesHub%20Thumbnail.jpg"
+                                    alt="SalesHub lead management portal" loading="lazy" width="400"
+                                    height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">SalesHub</h3>
+                            <p class="project-desc">The Sales Approval Portal is a production-grade enterprise application designed to manage the lifecycle of sales leads across different organizational levels (Sales Rep, Country Manager, and Master Admin).</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">MongoDB</span>
+                                    <span class="tech-tag">Express</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Node.js</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://sales.jayvarma.site/login" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="Open SalesHub Portal">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Explore
+                                    </a>
+                                    <a href="https://github.com/jayyvarmaa/sales" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View SalesHub source code">
+                                        <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- Portfolio Website (Self-simulated preview frame) -->
+                    <article class="project-card" data-category="web" id="project-portfolio">
+                        <div class="project-thumb">
+                            <div class="portfolio-live-preview">
+                                <div class="plp-scanline"></div>
+                                <div class="plp-title">Jay Varma</div>
+                                <div class="plp-subtitle">Game Dev · 3D Artist · Data Scientist</div>
+                                <div class="plp-stats">
+                                    <div class="plp-stat"><span class="plp-stat-num">12+</span>Projects</div>
+                                    <div class="plp-stat"><span class="plp-stat-num">5+</span>Categories</div>
+                                    <div class="plp-stat"><span class="plp-stat-num">30+</span>Models</div>
+                                </div>
+                                <div class="plp-links">
+                                    <span><i class="fab fa-github"></i></span>
+                                    <span><i class="fab fa-linkedin"></i></span>
+                                    <span><i class="fas fa-envelope"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">Portfolio Website</h3>
+                            <p class="project-desc">This very website! A clean, content-first portfolio showcasing
+                                projects, interactive 3D lightboxes, video embeds, and a responsive structure built from
+                                scratch.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">Vanilla CSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="./" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View Portfolio Website">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Explore
+                                    </a>
+                                    <a href="https://github.com/jayyvarmaa/website" target="_blank"
+                                        rel="noopener noreferrer" class="project-link-btn"
+                                        aria-label="View source code on GitHub">
+                                        <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    
+
+                    <!-- RansomType -->
+                    <article class="project-card" data-category="web" id="project-ransomtype">
+                        <a href="https://ransomtype.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View RansomType tool details">
+                            <picture>
+                                <source srcset="assets/thumbnails/ransomtype%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/ransomtype%20Thumbnail.jpg" alt="RansomType editor mockup"
+                                    loading="lazy" width="400" height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">RansomType</h3>
+                            <p class="project-desc">A free online generator tool that transforms plain text input into
+                                ransom-style newspaper cutout letters with interactive randomization, layouts, and print
+                                export options.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML</span>
+                                    <span class="tech-tag">CSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://ransomtype.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                                        class="project-link-btn" aria-label="Use RansomType online tool">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Launch Tool
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- NoAn! -->
+                    <article class="project-card" data-category="web" id="project-noan">
+                        <a href="https://noan.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                            class="project-thumb" aria-label="View NoAn Chrome extension">
+                            <picture>
+                                <source srcset="assets/thumbnails/noan%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/noan%20Thumbnail.jpg"
+                                    alt="NoAn browser extension logo preview" loading="lazy" width="400" height="225">
+                            </picture>
+                        </a>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Web</span>
+                            </div>
+                            <h3 class="project-name">NoAn! Extension</h3>
+                            <p class="project-desc">A lightweight Chrome extension that disables annoying overlays and
+                                annotations on YouTube videos in fullscreen mode, including Share, Watch Later, and card
+                                links.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Chrome Extension API</span>
+                                    <span class="tech-tag">CSS</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://noan.jayvarma.site" target="_blank" rel="noopener noreferrer"
+                                        class="project-link-btn" aria-label="Install NoAn extension">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> Get Extension
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- MNIST Digit Recognition -->
+                    <article class="project-card" data-category="datascience" id="project-mnist">
+                        <div class="project-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/MNIST%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/MNIST%20Thumbnail.jpg"
+                                    alt="MNIST handwritten recognition matrix preview" loading="lazy" width="400"
+                                    height="225">
+                            </picture>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-meta">
+                                <span class="project-category">Data Science</span>
+                                <span class="project-badge">ML / AI</span>
+                            </div>
+                            <h3 class="project-name">MNIST Digit Recognition</h3>
+                            <p class="project-desc">Deep learning model for handwritten digit classification. Run Python
+                                code cells, execute logic, and visualize plots directly inside a browser-based Jupyter
+                                notebook emulator.</p>
+                            <div class="project-footer">
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Scikit-Learn</span>
+                                    <span class="tech-tag">NumPy</span>
+                                    <span class="tech-tag">Matplotlib</span>
+                                </div>
+                                <div class="project-links">
+                                    <button class="project-link-btn" id="open-mnist-notebook"
+                                        onclick="openNotebook('global:MNIST_NOTEBOOK_DATA', 'MNIST Handwritten Digit Recognition')"
+                                        aria-label="Explore MNIST interactive notebook">
+                                        <i class="fas fa-rocket" aria-hidden="true"></i> Explore Notebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Gallery Section -->
+        <section id="gallery" class="section" aria-label="3D Model Gallery">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">3D Gallery</h2>
+                    <p class="section-subtitle">3D Models and asset drafts crafted in Blender & 3DS Max</p>
                 </div>
 
-            </section>
+                <!-- Gallery Grid -->
+                <div class="gallery-grid reveal delay-100" id="gallery-grid">
 
-            <!-- 3D Gallery Page -->
-            <section id="gallery-page" class="page" aria-label="3D Gallery">
-                <div class="projects-header">
-                    <h2 class="page-title">3D Gallery</h2>
-                    <p class="page-description">Click on any model to view it in full screen</p>
+                    <!-- Stylized Cozy House -->
+                    <article class="gallery-card" data-model="stylized-house"
+                        data-sketchfab="b2abb4b19a9b411790f8a29d490cafe5" data-name="Stylized Cozy House"
+                        data-tech="3DS Max, GLTF"
+                        data-desc="A detailed low-poly stylized cozy house model. Features hand-painted textures, lighting baking, and geometry optimized for real-time engines."
+                        id="model-house">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/Stylized%20House%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/Stylized%20House%20Thumbnail.jpg"
+                                    alt="Stylized house 3D render preview" loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Stylized Cozy House</h3>
+                            <p class="gallery-desc">A low-poly stylized cozy house model. Features hand-painted textures
+                                and optimized geometry for real-time rendering.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">3DS Max</span>
+                                <span class="tech-tag">GLTF</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Stylized Buoy -->
+                    <article class="gallery-card" data-model="buoy" data-sketchfab="d4f9bcba737a4beab33518e53025f456"
+                        data-name="Stylized Buoy" data-tech="Blender, GLB"
+                        data-desc="A stylized variation of a maritime buoy, optimized for floating in water simulations. Modeled, unwrapped, and hand-textured in Blender."
+                        id="model-buoy">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/Buoy%20Model.webp" type="image/webp">
+                                <img src="assets/thumbnails/Buoy%20Model.jpg"
+                                    alt="Stylized buoy 3D model render preview" loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Stylized Buoy</h3>
+                            <p class="gallery-desc">A stylized variation of a buoy, capable of floating in water.
+                                Modeled and textured in Blender.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">Blender</span>
+                                <span class="tech-tag">GLB</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Perfume Bottle -->
+                    <article class="gallery-card" data-model="perfume" data-sketchfab="38567420de4f456594241367e2bff6d2"
+                        data-name="Perfume Bottle" data-tech="Blender, GLTF, PBR"
+                        data-desc="A detailed product 3D mockup of a perfume bottle with realistic metallic caps and marble textures. Utilizes normal mapping and PBR textures."
+                        id="model-perfume">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/perfume.webp" type="image/webp">
+                                <img src="assets/thumbnails/perfume.jpg" alt="Perfume bottle 3D mockup render preview"
+                                    loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Perfume Bottle</h3>
+                            <p class="gallery-desc">A detailed 3D model of a perfume bottle with metal and marble
+                                textures. Features normal mapping for realistic surface details.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">Blender</span>
+                                <span class="tech-tag">GLTF</span>
+                                <span class="tech-tag">PBR</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Cinematic Section -->
+        <section id="cinematic" class="section" aria-label="Cinematic Film Work">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Cinematic Work</h2>
+                    <p class="section-subtitle">Short films, direction, and post-production scripts</p>
                 </div>
 
-                <div class="gallery-grid" id="gallery-grid">
-                    <!-- Model cards will be inserted dynamically by JS -->
-                </div>
-                <div class="gallery-note">
-                    <i class="fas fa-info-circle"></i>
-                    <p>More 3D models coming soon! Check back later for interactive previews.</p>
-                </div>
-
-            </section>
-
-            <!-- Cinematic Page -->
-            <section id="cinematic-page" class="page" aria-label="Cinematic Work">
-                <div class="premiere-container">
+                <div class="premiere-container reveal delay-100">
                     <!-- Film Presentation -->
                     <div class="premiere-theater">
                         <div class="premiere-badge">FEATURED SHORT <span class="premiere-year">2023</span></div>
-                        <h2 class="premiere-title">Osaka no Urami</h2>
-                        <h3 class="premiere-japanese">&#x5927;&#x962A;&#x306E;&#x6068;&#x307F;</h3>
+                        <h2 class="premiere-title" tabindex="-1">Osaka no Urami</h2>
+                        <h3 class="premiere-japanese">大阪の恨み</h3>
 
                         <div class="premiere-screen-wrapper">
                             <iframe id="main-yt-iframe"
                                 src="https://www.youtube-nocookie.com/embed/o_DbgIUeTB4?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
-                                title="Osaka no Urami - Short Film by Jay Varma" frameborder="0"
-                                loading="lazy"
+                                title="Osaka no Urami - Short Film by Jay Varma" frameborder="0" loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                allowfullscreen=""></iframe>
                         </div>
                     </div>
 
                     <!-- Film Synopsis & Credits -->
                     <div class="premiere-metadata">
                         <div class="premiere-synopsis">
-                            <p class="premiere-tagline">&quot;A journey from concept to final cut.&quot;</p>
+                            <p class="premiere-tagline">"A journey from concept to final cut."</p>
                             <p class="premiere-description">A cinematic short film blending dramatic storytelling with
                                 immersive visuals. This project showcases direction, cinematography, and post-production
                                 execution, capturing the essence of the narrative.</p>
@@ -496,221 +879,268 @@
                         <div class="premiere-screen-wrapper bts-screen">
                             <iframe id="bts-yt-iframe"
                                 src="https://www.youtube-nocookie.com/embed/Gy5I_NR_x8I?rel=0&amp;modestbranding=1&amp;iv_load_policy=3"
-                                title="Osaka no Urami - Behind The Scenes" frameborder="0"
-                                loading="lazy"
+                                title="Osaka no Urami - Behind The Scenes" frameborder="0" loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                allowfullscreen=""></iframe>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-            </section>
-
-            <!-- Experience Page -->
-            <section id="experience-page" class="page" aria-label="Experience">
-                <div class="projects-header">
-                    <h2 class="page-title">Experience</h2>
-                    <p class="page-description">My professional journey (and caffeine addiction)</p>
+        <!-- Experience Section -->
+        <section id="experience" class="section" aria-label="Professional Experience">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-subtitle">My professional journey (and debugging logs)</p>
                 </div>
 
-                <div class="experience-list">
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div class="experience-icon">
-                                <i class="fas fa-gamepad"></i>
+                <!-- Vertical Timeline -->
+                <div class="timeline reveal delay-100">
+
+                    <!-- Internship -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-title">Game Developer</h3>
+                                <div class="timeline-company">Daydreamsoft Infotech LLP</div>
                             </div>
-                            <div class="experience-title">
-                                <h3>Game Developer</h3>
-                                <p class="company">Daydreamsoft Infotech LLP</p>
-                            </div>
-                            <span class="experience-badge">Internship</span>
                         </div>
-                        <div class="experience-meta">
-                            <span><i class="fas fa-calendar"></i> May 2025 - Jun 2025</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Surat, Gujarat</span>
+                        <div class="timeline-meta">
+                            <span><i class="fas fa-calendar" aria-hidden="true"></i> May 2025 – Jun 2025</span>
+                            <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Surat, Gujarat</span>
+                            <span><i class="fas fa-briefcase" aria-hidden="true"></i> Internship</span>
                         </div>
-                        <ul class="experience-details">
-                            <li>Developed game mechanics and systems using Unity Engine</li>
-                            <li>Collaborated on 3D asset integration and optimization</li>
-                            <li>Implemented AI behavior scripts for NPCs</li>
+                        <ul class="timeline-details">
+                            <li>Developed and refined core 3D game mechanics and controls using Unity.</li>
+                            <li>Collaborated with artists to integrate, rig, and optimize low-poly 3D assets for mobile
+                                execution.</li>
+                            <li>Wrote optimized, reusable AI scripting modules and state-machines for NPC movement and
+                                combat behavior.</li>
                         </ul>
                     </div>
 
-                    <div class="experience-card">
-                        <div class="experience-header">
-                            <div class="experience-icon">
-                                <i class="fas fa-code"></i>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section" aria-label="Technical Skills">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Skills</h2>
+                    <p class="section-subtitle">Core capabilities and languages (no generic bars here)</p>
+                </div>
+
+                <div class="skills-loops-container reveal delay-100">
+                    
+                    <!-- Game Development -->
+                    <div id="skills-group-gamedev">
+                        <h3 class="skills-group-title">Game Development <span class="group-tag">[GD]</span></h3>
+                        <div id="skills-loop-gd" class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-speed="50" data-hover-speed="60" data-direction="left" style="--logoloop-gap: 120px; --logoloop-logoHeight: 100px; margin-bottom: 40px;">
+                            <div class="logoloop__track">
+                                <ul class="logoloop__list">
+                                    <li class="logoloop__item" title="Unity"><img src="assets/skills_icons/unity.svg" alt="Unity" /></li>
+                                    <li class="logoloop__item" title="C#"><img src="assets/skills_icons/csharp-svgrepo-com.svg" alt="C#" /></li>
+                                    <li class="logoloop__item" title="C++"><img src="assets/skills_icons/cplusplus-svgrepo-com.svg" alt="C++" /></li>
+                                    <li class="logoloop__item" title="Unreal Engine"><img src="assets/skills_icons/unrealengine.svg" alt="Unreal Engine" /></li>
+                                    <li class="logoloop__item" title="Blueprints"><img src="assets/skills_icons/blueprints.svg" alt="Blueprints" /></li>
+                                    <li class="logoloop__item" title="AI Scripting"><img src="assets/skills_icons/AI%20Scripting.svg" alt="AI Scripting" /></li>
+                                    <li class="logoloop__item" title="Gameplay Systems"><img src="assets/skills_icons/Gameplay%20Systems.svg" alt="Gameplay Systems" /></li>
+                                </ul>
                             </div>
-                            <div class="experience-title">
-                                <h3>Personal Development</h3>
-                                <p class="company">Self-employed</p>
+                        </div>
+                    </div>
+
+                    <!-- 3D Art & Design -->
+                    <div id="skills-group-3dart">
+                        <h3 class="skills-group-title">3D Art & Design <span class="group-tag">[3D]</span></h3>
+                        <div id="skills-loop-tools" class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-speed="30" data-hover-speed="60" data-direction="left" style="--logoloop-gap: 120px; --logoloop-logoHeight: 100px; margin-bottom: 20px;">
+                            <div class="logoloop__track">
+                                <ul class="logoloop__list">
+                                    <li class="logoloop__item" title="Character Design"><img src="assets/skills_icons/Character%20Designsvgrepo-com.svg" alt="Character Design" /></li>
+                                    <li class="logoloop__item" title="Environment Design"><img src="assets/skills_icons/environment-design-svgrepo-com.svg" alt="Environment Design" /></li>
+                                    <li class="logoloop__item" title="Concept Art"><img src="assets/skills_icons/Concept%20Art-svgrepo-com.svg" alt="Concept Art" /></li>
+                                </ul>
                             </div>
-                            <span class="experience-badge ongoing">Ongoing</span>
                         </div>
-                        <div class="experience-meta">
-                            <span><i class="fas fa-calendar"></i> Aug 2020 - Present</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Surat, Gujarat</span>
+                    </div>
+
+                    <!-- Data Science & AI -->
+                    <div id="skills-group-datascience">
+                        <h3 class="skills-group-title">Data Science & AI <span class="group-tag">[DS]</span></h3>
+                        <div id="skills-loop-ds" class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-speed="60" data-hover-speed="60" data-direction="left" style="--logoloop-gap: 120px; --logoloop-logoHeight: 100px; margin-bottom: 40px;">
+                            <div class="logoloop__track">
+                                <ul class="logoloop__list">
+                                    <li class="logoloop__item" title="Python"><img src="assets/skills_icons/python-svgrepo-com.svg" alt="Python" /></li>
+                                    <li class="logoloop__item" title="PyTorch"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" /></li>
+                                    <li class="logoloop__item" title="TensorFlow"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" /></li>
+                                    <li class="logoloop__item" title="Keras"><img src="assets/skills_icons/devicon-plain-keras-512px.svg" alt="Keras" /></li>
+                                    <li class="logoloop__item" title="Pandas"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" /></li>
+                                    <li class="logoloop__item" title="NumPy"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" /></li>
+                                    <li class="logoloop__item" title="Scikit-Learn"><img src="assets/skills_icons/simple-icons-scikitlearn-512px.svg" alt="Scikit-Learn" /></li>
+                                    <li class="logoloop__item" title="OpenCV"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" /></li>
+                                    <li class="logoloop__item" title="YOLOv5"><img src="assets/skills_icons/yolo.svg" alt="YOLOv5" /></li>
+                                    <li class="logoloop__item" title="Natural Language Processing"><img src="assets/skills_icons/natural-language-processing-svgrepo-com.svg" alt="NLP" /></li>
+                                    <li class="logoloop__item" title="Machine Learning"><img src="assets/skills_icons/Machine%20Learning-svgrepo-com.svg" alt="Machine Learning" /></li>
+                                    <li class="logoloop__item" title="Deep Learning"><img src="assets/skills_icons/deep-learning-svgrepo-com.svg" alt="Deep Learning" /></li>
+                                    <li class="logoloop__item" title="Clustering & PCA"><img src="assets/skills_icons/Clustering%20%26%20PCA-svgrepo-com.svg" alt="Clustering & PCA" /></li>
+                                    <li class="logoloop__item" title="Time Series Prediction"><img src="assets/skills_icons/Time%20Series%20Prediction-svgrepo-com.svg" alt="Time Series Prediction" /></li>
+                                    <li class="logoloop__item" title="Data Visualization"><img src="assets/skills_icons/Data%20Visualizationsvgrepo-com.svg" alt="Data Visualization" /></li>
+                                </ul>
+                            </div>
                         </div>
-                        <ul class="experience-details">
-                            <li>Can code for 12+ hours straight when debugging that one elusive bug</li>
-                            <li>Believes that 3 AM is the optimal time for creative coding</li>
-                            <li>Has more game ideas than time to implement them</li>
-                            <li>Still gets excited when a build compiles without errors on the first try</li>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div id="skills-group-web">
+                        <h3 class="skills-group-title">Web Development <span class="group-tag">[WD]</span></h3>
+                        <div id="skills-loop-tools" class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-speed="70" data-hover-speed="60" data-direction="left" style="--logoloop-gap: 120px; --logoloop-logoHeight: 100px; margin-bottom: 20px;">
+                            <div class="logoloop__track">
+                                <ul class="logoloop__list">
+                                    <li class="logoloop__item" title="HTML5"><img src="assets/skills_icons/html5-01-svgrepo-com.svg" alt="HTML5" /></li>
+                                    <li class="logoloop__item" title="CSS3"><img src="assets/skills_icons/akar-icons-css-fill-512px.svg" alt="CSS3" /></li>
+                                    <li class="logoloop__item" title="JavaScript"><img src="assets/skills_icons/js01-svgrepo-com.svg" alt="JavaScript" /></li>
+                                    <li class="logoloop__item" title="TypeScript"><img src="assets/skills_icons/akar-icons-typescript-fill-512px.svg" alt="TypeScript" /></li>
+                                    <li class="logoloop__item" title="React"><img src="assets/skills_icons/react.svg" alt="React" /></li>
+                                    <li class="logoloop__item" title="Next.js"><img src="assets/skills_icons/nextdotjs.svg" alt="Next.js" /></li>
+                                    <li class="logoloop__item" title="Vue.js"><img src="assets/skills_icons/mingcute-vue-fill-512px.svg" alt="Vue.js" /></li>
+                                    <li class="logoloop__item" title="Node.js"><img src="assets/skills_icons/nodedotjs.svg" alt="Node.js" /></li>
+                                    <li class="logoloop__item" title="Express.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" /></li>
+                                    <li class="logoloop__item" title="MongoDB"><img src="assets/skills_icons/mongodb.svg" alt="MongoDB" /></li>
+                                    <li class="logoloop__item" title="PostgreSQL"><img src="assets/skills_icons/akar-icons-postgresql-fill-512px.svg" alt="PostgreSQL" /></li>
+                                    <li class="logoloop__item" title="Firebase"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" /></li>
+                                    <li class="logoloop__item" title="Flask"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /></li>
+                                    <li class="logoloop__item" title="Streamlit"><img src="https://cdn.simpleicons.org/streamlit/FF4B4B" alt="Streamlit" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Software -->
+                    <div id="skills-group-tools">
+                        <h3 class="skills-group-title">Tools & Software <span class="group-tag">[TL]</span></h3>
+                        <div id="skills-loop-tools" class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover" data-speed="50" data-hover-speed="60" data-direction="left" style="--logoloop-gap: 120px; --logoloop-logoHeight: 100px; margin-bottom: 20px;">
+                            <div class="logoloop__track">
+                                <ul class="logoloop__list">
+                                    <li class="logoloop__item" title="Photoshop"><img src="assets/skills_icons/photoshop-svgrepo-com.svg" alt="Photoshop" /></li>
+                                    <li class="logoloop__item" title="Illustrator"><img src="assets/skills_icons/illustrator-svgrepo-com.svg" alt="Illustrator" /></li>
+                                    <li class="logoloop__item" title="Premiere Pro"><img src="assets/skills_icons/premiere-svgrepo-com.svg" alt="Premiere Pro" /></li>
+                                    <li class="logoloop__item" title="After Effects"><img src="assets/skills_icons/aftereffects-svgrepo-com.svg" alt="After Effects" /></li>
+                                    <li class="logoloop__item" title="Audition"><img src="assets/skills_icons/audition-svgrepo-com.svg" alt="Audition" /></li>
+                                    <li class="logoloop__item" title="Autodesk Maya"><img src="assets/skills_icons/autodeskmaya.svg" alt="Autodesk Maya" /></li>
+                                    <li class="logoloop__item" title="Autodesk 3Ds Max"><img src="assets/skills_icons/devicon-plain-3dsmax-512px.svg" alt="Autodesk 3Ds Max" /></li>
+                                    <li class="logoloop__item" title="ZBrush"><img src="assets/skills_icons/zbrush-svgrepo-com.svg" alt="ZBrush" /></li>
+                                    <li class="logoloop__item" title="Substance Painter"><img src="assets/skills_icons/substance-painter.svg" alt="Substance Painter" /></li>
+                                    <li class="logoloop__item" title="Blender"><img src="assets/skills_icons/blender-svgrepo-com.svg" alt="Blender" /></li>
+                                    <li class="logoloop__item" title="Git & GitHub"><img src="assets/skills_icons/github-logo_icon-icons.com_73546.svg" alt="Git & GitHub" /></li>
+                                    <li class="logoloop__item" title="Visual Studio"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section" aria-label="Contact Information">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">i reply faster than player reflexes</p>
+                </div>
+
+                <div class="contact-grid reveal delay-100">
+                    <div class="contact-left">
+                        <p class="contact-message">
+                            Have a project in mind or want to talk games? I'm always open to new concepts and pipelines.
+                        </p>
+                    </div>
+
+                    <div class="contact-right">
+                        <ul class="contact-details-list">
+                            <li id="contact-email-item"><strong>Email</strong> <a href="mailto:jaymayurvarma@gmail.com"
+                                    id="contact-email-link"
+                                    aria-label="Email Jay Varma at jaymayurvarma@gmail.com">jaymayurvarma@gmail.com</a>
+                            </li>
+                            <li id="contact-linkedin-item"><strong>LinkedIn</strong> <a
+                                    href="https://www.linkedin.com/in/jayyvarmaa" target="_blank"
+                                    rel="noopener noreferrer" id="contact-linkedin-link"
+                                    aria-label="Visit Jay Varma LinkedIn profile">linkedin.com/in/jayyvarmaa</a></li>
+                            <li id="contact-github-item"><strong>GitHub</strong> <a href="https://github.com/jayyvarmaa"
+                                    target="_blank" rel="noopener noreferrer" id="contact-github-link"
+                                    aria-label="Visit Jay Varma GitHub profile">github.com/jayyvarmaa</a></li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </section>
 
-            </section>
-
-            <!-- Skills Page -->
-            <section id="skills-page" class="page" aria-label="Skills">
-                <div class="projects-header">
-                    <h2 class="page-title">Skills</h2>
-                    <p class="page-description">Technical expertise and competencies (aka my superpowers)</p>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <h3>Game Development</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Unity</span>
-                            <span class="skill-tag">Unreal Engine</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">Level Design</span>
-                            <span class="skill-tag">AI Scripting</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3>3D Art &amp; Design</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Blender</span>
-                            <span class="skill-tag">Maya</span>
-                            <span class="skill-tag">3ds Max</span>
-                            <span class="skill-tag">ZBrush</span>
-                            <span class="skill-tag">Substance Painter</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Data Science &amp; AI</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">Keras</span>
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">Machine Learning</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">Streamlit</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3>Tools &amp; Software</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Visual Studio</span>
-                            <span class="skill-tag">Photoshop</span>
-                            <span class="skill-tag">Illustrator</span>
-                            <span class="skill-tag">Audition</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-            <!-- Contact Page -->
-            <section id="contact-page" class="page" aria-label="Contact">
-                <div class="projects-header">
-                    <h2 class="page-title">Contact</h2>
-                    <p class="page-description">Let's connect and collaborate (or just chat about games)</p>
-                </div>
-
-                <div class="contact-card">
-                    <h3>Get in Touch</h3>
-                    <p>I'm always open to collaborating with fellow developers, designers, and storytellers. Feel free
-                        to reach out!</p>
-
-                    <div class="contact-links">
-                        <a href="mailto:jaymayurvarma@gmail.com" class="contact-item" aria-label="Email Jay Varma">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                            <span>jaymayurvarma@gmail.com</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Jay Varma LinkedIn profile">
-                            <i class="fab fa-linkedin" aria-hidden="true"></i>
-                            <span>linkedin.com/in/jayyvarmaa</span>
-                        </a>
-                        <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Jay Varma GitHub profile">
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                            <span>github.com/jayyvarmaa</span>
-                        </a>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Surat, Gujarat, India</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gamer Contact Message -->
-                <div class="gamer-contact-message">
-                    <p>PS: I promise to respond faster than a player reflex in a competitive match!</p>
-                </div>
-            </section>
-        </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
-        <div class="footer-content">
-            <p>&copy; 2026 Jay Varma. All rights reserved.</p>
+        <div class="container footer-container">
+            <a href="#home" class="footer-logo" id="footer-branding" aria-label="Jay Varma Home">
+                JV
+            </a>
+            <p class="footer-copyright" id="footer-copyright-text">
+                &copy; 2026 Jay Varma. All rights reserved.
+            </p>
+            <div class="footer-links">
+                <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer" class="footer-link"
+                    aria-label="GitHub">GitHub</a>
+                <a href="https://www.linkedin.com/in/jayyvarmaa" target="_blank" rel="noopener noreferrer"
+                    class="footer-link" aria-label="LinkedIn">LinkedIn</a>
+                <a href="assets/JayResume.pdf" download="JayVarma-Resume.pdf" class="footer-link"
+                    id="footer-resume-link" aria-label="Download Resume PDF">Resume</a>
+            </div>
         </div>
     </footer>
 
+    <!-- Lightbox Modal (For 3D models and cinematic video embeds) -->
+    <div class="modal-overlay" id="media-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title" id="media-modal-title">Model Viewer</h2>
+                <button class="modal-close" id="media-modal-close" aria-label="Close Lightbox Modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-media-wrapper" id="media-modal-wrapper">
+                    <!-- Dynamic Iframe or Image will go here -->
+                </div>
+                <div class="modal-details">
+                    <p class="modal-description" id="media-modal-desc">Description text</p>
+                    <div class="modal-meta">
+                        <div class="modal-meta-item" id="media-modal-tech-wrapper">
+                            <strong>Software</strong> <span id="media-modal-tech">Blender</span>
+                        </div>
+                        <div class="modal-meta-item" id="media-modal-action-wrapper">
+                            <!-- e.g. View on Sketchfab link -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Three.js and GLTFLoader loaded from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
+    <!-- Notebook scripts loaded sequentially -->
     <script src="notebook_viewer.js"></script>
     <script src="assets/DS Projects/MNIST Handwritten Digit Recognizer/mnist_notebook_data.js"></script>
-    <script src="script.js"></script>
-
-    <!-- Privacy-friendly Analytics (Plausible - replace with your domain or remove if not needed) -->
-    <!-- <script defer data-domain="jayvarma.site" src="https://plausible.io/js/script.js"></script> -->
+    <script src="main.js"></script>
+    <script src="lanyard.js?v=12"></script>
 </body>
 
 </html>
