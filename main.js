@@ -350,6 +350,9 @@ class LogoLoop {
         // Configuration
         const speedAttr = parseFloat(element.getAttribute('data-speed'));
         this.speed = isNaN(speedAttr) ? 120 : speedAttr;
+        if (window.innerWidth <= 768) {
+            this.speed *= 3;
+        }
         this.direction = element.getAttribute('data-direction') || 'left';
         
         // Easing config matching React Bits ANIMATION_CONFIG

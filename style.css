@@ -265,6 +265,12 @@ ul {
   transition: opacity 0.8s ease-in-out;
 }
 
+@media (max-width: 768px) {
+  .hero-lanyard-container {
+    display: none !important;
+  }
+}
+
 #lanyard-canvas {
   width: 100%;
   height: 100%;
@@ -1698,8 +1704,8 @@ ul {
   }
   
   .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
   
   .section {
@@ -1752,13 +1758,20 @@ ul {
 
 .logoloop {
   position: relative;
+  display: flex;
   overflow: hidden;
   width: 100%;
-  margin-bottom: 24px;
-
+  box-sizing: border-box;
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 28px;
   --logoloop-fadeColorAuto: #0a0a0a;
+}
+
+@media (max-width: 768px) {
+  .logoloop {
+    --logoloop-gap: 16px;
+    --logoloop-logoHeight: 18px;
+  }
 }
 
 .logoloop--vertical {
