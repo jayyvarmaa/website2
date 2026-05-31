@@ -1,4 +1,7 @@
 (function () {
+  // Disable completely on mobile to save performance and prevent overlaps
+  if (window.innerWidth <= 768) return;
+
   // 1. Scene, Camera, Renderer Setup
   const canvas = document.getElementById('lanyard-canvas');
   if (!canvas) return;

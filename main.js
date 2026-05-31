@@ -685,7 +685,7 @@ async function loadPostsIntoGallery() {
 
     let postsData = [];
     try {
-        const response = await fetch('assets/posts_manifest.json');
+        const response = await fetch('assets/posts_manifest.json?v=' + new Date().getTime());
         postsData = await response.json();
     } catch (e) {
         console.error('Failed to load posts manifest:', e);
