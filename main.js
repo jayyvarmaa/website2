@@ -574,7 +574,8 @@ function initTooltips() {
     document.body.appendChild(tooltip);
 
     document.addEventListener('mouseover', (e) => {
-        const target = e.target.closest('[title], [data-title]');
+        // Only show tooltip for skills scroll items
+        const target = e.target.closest('.logoloop__item[title], .logoloop__item[data-title]');
         if (!target) return;
 
         // Move title to data-title to prevent default tooltip
@@ -602,7 +603,7 @@ function initTooltips() {
     });
 
     document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest('[data-title]');
+        const target = e.target.closest('.logoloop__item[data-title]');
         if (target) {
             tooltip.classList.remove('visible');
         }
