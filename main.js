@@ -250,7 +250,7 @@ function initMediaModals() {
             const tech = card.getAttribute('data-tech');
             const sketchfabId = card.getAttribute('data-sketchfab');
             
-            const embedHTML = `<div class="sketchfab-embed-wrapper"><iframe src="https://sketchfab.com/models/${sketchfabId}/embed?autostart=1&internal=1&tracking=0" title="${name}" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share></iframe></div>`;
+            const embedHTML = `<div class="sketchfab-embed-wrapper"><iframe src="https://sketchfab.com/models/${sketchfabId}/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_fullscreen=0&ui_share=0&ui_watermark=1" title="${name}" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share></iframe></div>`;
             
             openModal(name, desc, embedHTML, tech, sketchfabId);
         });
