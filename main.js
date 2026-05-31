@@ -654,21 +654,23 @@ function initLanyardDelay() {
         }
     };
     
-    // Show lanyard after exactly 6 seconds
-    hintTimeoutId = setTimeout(() => {
-        lanyardContainer.style.opacity = '1';
-        if (hintElement) {
-            hintElement.classList.add('visible');
-            // Add interaction listeners once hint is visible
-            addInteractionListeners();
-        }
-    }, 6000);
-    
-    // Hide hint message after 5 seconds (total 11 seconds)
-    if (hintElement) {
-        hideHintTimeoutId = setTimeout(() => {
-            hideHintInstantly();
-        }, 11000);
+    // Wait for GLB to load, then show after 2 seconds
+    if (window.lanyardCardLoaded) {
+        window.lanyardCardLoaded.then(() => {
+            hintTimeoutId = setTimeout(() => {
+                lanyardContainer.style.opacity = '1';
+                if (hintElement) {
+                    hintElement.classList.add('visible');
+                    // Add interaction listeners once hint is visible
+                    addInteractionListeners();
+                    
+                    // Hide hint message after 5 seconds of being visible
+                    hideHintTimeoutId = setTimeout(() => {
+                        hideHintInstantly();
+                    }, 5000);
+                }
+            }, 2000);
+        });
     }
 }
 
