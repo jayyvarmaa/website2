@@ -41,9 +41,10 @@ Thumbs.db
 
 # User specifically requested ignoring .txt files
 *.txt
+!llms.txt
+!robots.txt
 
 # Exclude specific files as requested
-robots.txt
 generate_posts_data.py
 dev_server.py
 

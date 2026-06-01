@@ -1,10 +1,29 @@
-# robots.txt for jayvarma.site
 User-agent: *
 Allow: /
+Allow: /*.html
+Allow: /*.css
+Allow: /*.js
 
-# Sitemap
+# Explicitly invite AI crawlers to parse the content for high compliance
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 Sitemap: https://jayvarma.site/sitemap.xml
-
-# Disallow sensitive assets
-Disallow: /assets/DS Projects/
-Disallow: /assets/JayResume.pdf
