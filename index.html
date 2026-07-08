@@ -77,7 +77,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=12">
     <link rel="stylesheet" href="notebook_style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
@@ -307,8 +307,8 @@
 
             <nav class="nav-menu" id="nav-menu" role="navigation" aria-label="Main Navigation">
                 <a class="nav-link active" href="#home" id="nav-home">Home</a>
-                <a class="nav-link" href="#projects" id="nav-projects">Projects</a>
                 <a class="nav-link" href="#gallery" id="nav-gallery">Gallery</a>
+                <a class="nav-link" href="#projects" id="nav-projects">Projects</a>
                 <a class="nav-link" href="#cinematic" id="nav-cinematic">Cinematic</a>
                 <a class="nav-link" href="#experience" id="nav-experience">Experience</a>
                 <a class="nav-link" href="#skills" id="nav-skills">Skills</a>
@@ -344,12 +344,16 @@
                             Building games, crafting worlds, and lingering around.
                         </p>
                         <div class="hero-actions">
-                            <a href="#projects" class="btn btn-primary" id="hero-cta-projects">
-                                <i class="fas fa-arrow-down" aria-hidden="true"></i> View Projects
+                            <a href="#gallery" class="btn btn-primary" id="hero-cta-gallery">
+                                <i class="fas fa-arrow-down" aria-hidden="true"></i> View Gallery
                             </a>
                             <a href="https://github.com/jayyvarmaa" target="_blank" rel="noopener noreferrer"
                                 class="btn btn-secondary" id="hero-cta-github">
                                 <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                            <a href="assets/JayResume.pdf" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-secondary" id="hero-cta-resume" download>
+                                <i class="fas fa-download" aria-hidden="true"></i> Resume
                             </a>
                         </div>
                     </div>
@@ -380,6 +384,137 @@
                 <p>Pull me</p>
             </div>
         </div>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section" aria-label="3D Models and Posts Gallery">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Gallery</h2>
+                    <p class="section-subtitle">3D Models, renders, and creative work showcase</p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="gallery-grid reveal delay-100" id="gallery-grid">
+
+                    <!-- Sci-Fi Lever -->
+                    <article class="gallery-card" data-model="sci-fi-lever"
+                        data-sketchfab="51c2b894561e4dee957df55caa5d75c1" data-name="Sci-Fi Lever"
+                        data-tech="Maya, Substance Painter"
+                        data-desc="A sci-fi lever modeled in Maya with textures crafted in Substance Painter. Inspired by Polyrendr, featuring clean topology and PBR-ready materials."
+                        id="model-scifi-lever">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/Sci-Fi%20Lever%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/Sci-Fi%20Lever%20Thumbnail.webp"
+                                    alt="Sci-Fi Lever 3D model render preview" loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Sci-Fi Lever</h3>
+                            <p class="gallery-desc">A sci-fi lever modeled in Maya with textures in Substance Painter.
+                                Inspired by Polyrendr with clean topology and PBR materials.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">Maya</span>
+                                <span class="tech-tag">Substance Painter</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pixel Art Interactive Explorer Card -->
+                    <article class="gallery-card" data-pixel-explorer="true" data-name="Pixel Art Explorer"
+                        data-tech="Canvas, Animator, Parallax"
+                        data-desc="Interactive canvas utility to zoom, inspect pixel grids, control sprite frame rates, and simulate multi-layer parallax scrolling backgrounds."
+                        id="model-pixel-explorer">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <img src="assets/thumbnails/pathumbnail.webp" alt="Pixel Art Explorer Thumbnail" loading="lazy" width="400" height="225" style="object-fit: cover; width: 100%; height: 100%;">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Pixel Art Explorer</h3>
+                            <p class="gallery-desc">Interactive canvas utility to zoom, inspect pixel grids, control sprite frame rates, and simulate multi-layer parallax scrolling backgrounds.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">HTML5 Canvas</span>
+                                <span class="tech-tag">Sprite Animator</span>
+                                <span class="tech-tag">Parallax Simulator</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Stylized Cozy House -->
+                    <article class="gallery-card" data-model="stylized-house"
+                        data-sketchfab="b2abb4b19a9b411790f8a29d490cafe5" data-name="Stylized Cozy House"
+                        data-tech="3DS Max, GLTF"
+                        data-desc="A detailed low-poly stylized cozy house model. Features hand-painted textures, lighting baking, and geometry optimized for real-time engines."
+                        id="model-house">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/Stylized%20House%20Thumbnail.webp" type="image/webp">
+                                <img src="assets/thumbnails/Stylized%20House%20Thumbnail.webp"
+                                    alt="Stylized house 3D render preview" loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Stylized Cozy House</h3>
+                            <p class="gallery-desc">A low-poly stylized cozy house model. Features hand-painted textures
+                                and optimized geometry for real-time rendering.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">3DS Max</span>
+                                <span class="tech-tag">GLTF</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Stylized Buoy -->
+                    <article class="gallery-card" data-model="buoy" data-sketchfab="d4f9bcba737a4beab33518e53025f456"
+                        data-name="Stylized Buoy" data-tech="Blender, GLB"
+                        data-desc="A stylized variation of a maritime buoy, optimized for floating in water simulations. Modeled, unwrapped, and hand-textured in Blender."
+                        id="model-buoy">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/Buoy%20Model.webp" type="image/webp">
+                                <img src="assets/thumbnails/Buoy%20Model.webp"
+                                    alt="Stylized buoy 3D model render preview" loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Stylized Buoy</h3>
+                            <p class="gallery-desc">A stylized variation of a buoy, capable of floating in water.
+                                Modeled and textured in Blender.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">Blender</span>
+                                <span class="tech-tag">GLB</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Perfume Bottle -->
+                    <article class="gallery-card" data-model="perfume" data-sketchfab="38567420de4f456594241367e2bff6d2"
+                        data-name="Perfume Bottle" data-tech="Blender, GLTF, PBR"
+                        data-desc="A detailed product 3D mockup of a perfume bottle with realistic metallic caps and marble textures. Utilizes normal mapping and PBR textures."
+                        id="model-perfume">
+                        <div class="gallery-thumb">
+                            <picture>
+                                <source srcset="assets/thumbnails/perfume.webp" type="image/webp">
+                                <img src="assets/thumbnails/perfume.webp" alt="Perfume bottle 3D mockup render preview"
+                                    loading="lazy" width="400" height="300">
+                            </picture>
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="gallery-name">Perfume Bottle</h3>
+                            <p class="gallery-desc">A detailed 3D model of a perfume bottle with metal and marble
+                                textures. Features normal mapping for realistic surface details.</p>
+                            <div class="gallery-tech">
+                                <span class="tech-tag">Blender</span>
+                                <span class="tech-tag">GLTF</span>
+                                <span class="tech-tag">PBR</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
 
         <!-- Projects Section -->
         <section id="projects" class="section" aria-label="Portfolio Projects">
@@ -417,7 +552,7 @@
                             class="project-thumb" aria-label="View EnJinn Engine">
                             <picture>
                                 <source srcset="assets/thumbnails/EnJinn%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/EnJinn%20Thumbnail.jpg" alt="EnJinn Game Engine preview"
+                                <img src="assets/thumbnails/EnJinn%20Thumbnail.webp" alt="EnJinn Game Engine preview"
                                     loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -456,7 +591,7 @@
                             class="project-thumb" aria-label="View Asteroids game details">
                             <picture>
                                 <source srcset="assets/thumbnails/Asterioid%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/Asterioid%20Thumbnail.jpg" alt="Asteroids gameplay preview"
+                                <img src="assets/thumbnails/Asterioid%20Thumbnail.webp" alt="Asteroids gameplay preview"
                                     loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -489,7 +624,7 @@
                             class="project-thumb" aria-label="View Cube game details">
                             <picture>
                                 <source srcset="assets/thumbnails/cube%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/cube%20Thumbnail.jpg" alt="Cube game preview" loading="lazy"
+                                <img src="assets/thumbnails/cube%20Thumbnail.webp" alt="Cube game preview" loading="lazy"
                                     width="400" height="225">
                             </picture>
                         </a>
@@ -523,7 +658,7 @@
                             class="project-thumb" aria-label="View EnJinn Website">
                             <picture>
                                 <source srcset="assets/thumbnails/EnJinn%20Website%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/EnJinn%20Website%20Thumbnail.jpg"
+                                <img src="assets/thumbnails/EnJinn%20Website%20Thumbnail.webp"
                                     alt="EnJinn Website showcase" loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -562,7 +697,7 @@
                             class="project-thumb" aria-label="Open ForMD Markdown Editor">
                             <picture>
                                 <source srcset="assets/thumbnails/ForMD%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/ForMD%20Thumbnail.jpg" alt="ForMD Markdown editor preview"
+                                <img src="assets/thumbnails/ForMD%20Thumbnail.webp" alt="ForMD Markdown editor preview"
                                     loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -603,7 +738,7 @@
                             class="project-thumb" aria-label="Open SalesHub Portal">
                             <picture>
                                 <source srcset="assets/thumbnails/SalesHub%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/SalesHub%20Thumbnail.jpg"
+                                <img src="assets/thumbnails/SalesHub%20Thumbnail.webp"
                                     alt="SalesHub lead management portal" loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -695,7 +830,7 @@
                             class="project-thumb" aria-label="View RansomType tool details">
                             <picture>
                                 <source srcset="assets/thumbnails/ransomtype%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/ransomtype%20Thumbnail.jpg" alt="RansomType editor mockup"
+                                <img src="assets/thumbnails/ransomtype%20Thumbnail.webp" alt="RansomType editor mockup"
                                     loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -730,7 +865,7 @@
                             class="project-thumb" aria-label="View NoAn Chrome extension">
                             <picture>
                                 <source srcset="assets/thumbnails/noan%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/noan%20Thumbnail.jpg"
+                                <img src="assets/thumbnails/noan%20Thumbnail.webp"
                                     alt="NoAn browser extension logo preview" loading="lazy" width="400" height="225">
                             </picture>
                         </a>
@@ -764,7 +899,7 @@
                         <div class="project-thumb">
                             <picture>
                                 <source srcset="assets/thumbnails/MNIST%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/MNIST%20Thumbnail.jpg"
+                                <img src="assets/thumbnails/MNIST%20Thumbnail.webp"
                                     alt="MNIST handwritten recognition matrix preview" loading="lazy" width="400"
                                     height="225">
                             </picture>
@@ -801,92 +936,6 @@
         </section>
 
 
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="section" aria-label="3D Models and Posts Gallery">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Gallery</h2>
-                    <p class="section-subtitle">3D Models, renders, and creative work showcase</p>
-                </div>
-
-                <!-- Gallery Grid -->
-                <div class="gallery-grid reveal delay-100" id="gallery-grid">
-
-                    <!-- Stylized Cozy House -->
-                    <article class="gallery-card" data-model="stylized-house"
-                        data-sketchfab="b2abb4b19a9b411790f8a29d490cafe5" data-name="Stylized Cozy House"
-                        data-tech="3DS Max, GLTF"
-                        data-desc="A detailed low-poly stylized cozy house model. Features hand-painted textures, lighting baking, and geometry optimized for real-time engines."
-                        id="model-house">
-                        <div class="gallery-thumb">
-                            <picture>
-                                <source srcset="assets/thumbnails/Stylized%20House%20Thumbnail.webp" type="image/webp">
-                                <img src="assets/thumbnails/Stylized%20House%20Thumbnail.jpg"
-                                    alt="Stylized house 3D render preview" loading="lazy" width="400" height="300">
-                            </picture>
-                        </div>
-                        <div class="gallery-info">
-                            <h3 class="gallery-name">Stylized Cozy House</h3>
-                            <p class="gallery-desc">A low-poly stylized cozy house model. Features hand-painted textures
-                                and optimized geometry for real-time rendering.</p>
-                            <div class="gallery-tech">
-                                <span class="tech-tag">3DS Max</span>
-                                <span class="tech-tag">GLTF</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Stylized Buoy -->
-                    <article class="gallery-card" data-model="buoy" data-sketchfab="d4f9bcba737a4beab33518e53025f456"
-                        data-name="Stylized Buoy" data-tech="Blender, GLB"
-                        data-desc="A stylized variation of a maritime buoy, optimized for floating in water simulations. Modeled, unwrapped, and hand-textured in Blender."
-                        id="model-buoy">
-                        <div class="gallery-thumb">
-                            <picture>
-                                <source srcset="assets/thumbnails/Buoy%20Model.webp" type="image/webp">
-                                <img src="assets/thumbnails/Buoy%20Model.jpg"
-                                    alt="Stylized buoy 3D model render preview" loading="lazy" width="400" height="300">
-                            </picture>
-                        </div>
-                        <div class="gallery-info">
-                            <h3 class="gallery-name">Stylized Buoy</h3>
-                            <p class="gallery-desc">A stylized variation of a buoy, capable of floating in water.
-                                Modeled and textured in Blender.</p>
-                            <div class="gallery-tech">
-                                <span class="tech-tag">Blender</span>
-                                <span class="tech-tag">GLB</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Perfume Bottle -->
-                    <article class="gallery-card" data-model="perfume" data-sketchfab="38567420de4f456594241367e2bff6d2"
-                        data-name="Perfume Bottle" data-tech="Blender, GLTF, PBR"
-                        data-desc="A detailed product 3D mockup of a perfume bottle with realistic metallic caps and marble textures. Utilizes normal mapping and PBR textures."
-                        id="model-perfume">
-                        <div class="gallery-thumb">
-                            <picture>
-                                <source srcset="assets/thumbnails/perfume.webp" type="image/webp">
-                                <img src="assets/thumbnails/perfume.jpg" alt="Perfume bottle 3D mockup render preview"
-                                    loading="lazy" width="400" height="300">
-                            </picture>
-                        </div>
-                        <div class="gallery-info">
-                            <h3 class="gallery-name">Perfume Bottle</h3>
-                            <p class="gallery-desc">A detailed 3D model of a perfume bottle with metal and marble
-                                textures. Features normal mapping for realistic surface details.</p>
-                            <div class="gallery-tech">
-                                <span class="tech-tag">Blender</span>
-                                <span class="tech-tag">GLTF</span>
-                                <span class="tech-tag">PBR</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
 
         <!-- Cinematic Section -->
         <section id="cinematic" class="section" aria-label="Cinematic Film Work">
@@ -975,11 +1024,14 @@
                             <span><i class="fas fa-briefcase" aria-hidden="true"></i> Internship</span>
                         </div>
                         <ul class="timeline-details">
-                            <li>Developed and refined core 3D game mechanics and controls using Unity.</li>
-                            <li>Collaborated with artists to integrate, rig, and optimize low-poly 3D assets for mobile
-                                execution.</li>
-                            <li>Wrote optimized, reusable AI scripting modules and state-machines for NPC movement and
-                                combat behavior.</li>
+                            <li>Developed complete games in Unity (URP pipeline)</li>
+                            <li>Programmed core gameplay systems using C#</li>
+                            <li>Integrated AdMob for in-game advertisements</li>
+                            <li>Implemented In-App Purchases (IAP) for monetization</li>
+                            <li>Integrated Firebase for analytics, authentication, and data management</li>
+                            <li>Used Git for version control and project management</li>
+                            <li>Collaborated on 3D asset integration and optimization</li>
+                            <li>Implemented AI behavior scripts for NPCs</li>
                         </ul>
                     </div>
 
@@ -1293,8 +1345,8 @@
     <!-- Notebook scripts loaded sequentially -->
     <script src="notebook_viewer.js"></script>
     <script src="assets/DS Projects/MNIST Handwritten Digit Recognizer/mnist_notebook_data.js"></script>
-    <script src="main.js?v=5"></script>
-    <script src="lanyard.js?v=14"></script>
+    <script src="main.js?v=14"></script>
+    <script src="lanyard.js?v=16"></script>
 </body>
 
 </html>

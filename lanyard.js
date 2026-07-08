@@ -8,7 +8,7 @@
 
   const container = canvas.parentElement;
   const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.outputEncoding = THREE.sRGBEncoding;
 
@@ -176,7 +176,7 @@
 
   // Load Lanyard texture
   const textureLoader = new THREE.TextureLoader();
-  const lanyardTexture = textureLoader.load('/assets/lanyard/lanyard.png?v=2');
+  const lanyardTexture = textureLoader.load('assets/lanyard/lanyard.png?v=2');
   lanyardTexture.wrapS = THREE.RepeatWrapping;
   lanyardTexture.wrapT = THREE.RepeatWrapping;
   lanyardTexture.encoding = THREE.sRGBEncoding;
@@ -200,7 +200,7 @@
 window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = resolve);
 
   const gltfLoader = THREE.GLTFLoader ? new THREE.GLTFLoader() : new GLTFLoader();
-  gltfLoader.load('/assets/lanyard/card.glb?v=2', (gltf) => {
+  gltfLoader.load('assets/lanyard/card.glb?v=2', (gltf) => {
     if (window.resolveLanyardCard) window.resolveLanyardCard();
     const model = gltf.scene;
 
@@ -271,6 +271,16 @@ window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = re
       points[idxA].pos.z = points[idxA].prev.z + (points[idxA].pos.z - points[idxA].prev.z) * 0.95;
     }
 
+    // Calculate dynamic stretch if dragged
+    let stretchFactor = 1.0;
+    if (dragged) {
+      const maxRopeLen = 3.0; // 3 segments of 1.0
+      const currentDist = points[0].pos.distanceTo(points[idxA].pos);
+      if (currentDist > maxRopeLen) {
+        stretchFactor = currentDist / maxRopeLen;
+      }
+    }
+
     // 2. Solve constraints (15 iterations for stiffness)
     const iterations = 15;
     for (let iter = 0; iter < iterations; iter++) {
@@ -283,7 +293,11 @@ window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = re
         const len = delta.length();
         if (len === 0) continue;
 
-        const diff = c.length - len;
+        // Apply stretch factor ONLY to the rope constraints (the first 3)
+        const isRopeConstraint = (i < 3);
+        const targetLength = isRopeConstraint ? (c.length * stretchFactor) : c.length;
+
+        const diff = targetLength - len;
         const percent = diff / len / 2;
         const offset = delta.multiplyScalar(percent);
 
@@ -445,7 +459,7 @@ window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = re
       raycaster.ray.intersectPlane(planeZ, intersection);
 
       // Translate symmetric points
-      const nextA = intersection.clone().add(dragOffsets.A);
+      let nextA = intersection.clone().add(dragOffsets.A);
       const diff = nextA.clone().sub(points[idxA].pos);
 
       points[idxA].pos.copy(nextA);
@@ -512,6 +526,7 @@ window.lanyardCardLoaded = new Promise(resolve => window.resolveLanyardCard = re
     const height = container.clientHeight;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
   });
 
