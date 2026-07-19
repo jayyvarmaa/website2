@@ -47,5 +47,6 @@ Thumbs.db
 # Exclude specific files as requested
 generate_posts_data.py
 dev_server.py
+convert_to_webp.py
 
 assets/Posts/*.mp4
